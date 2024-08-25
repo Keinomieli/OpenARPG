@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh16xuv1dtkoe"]
+
+[ext_resource type="ArrayMesh" uid="uid://0bd5kxpikf2a" path="res://Assets/Levels/Vegetation/Forest_1_Tree_1.tres" id="1_vlc4j"]
+[ext_resource type="Material" uid="uid://c026rcgsne28y" path="res://Assets/Levels/Vegetation/Forest_1_Tree_1_bark.tres" id="2_k6uox"]
+[ext_resource type="Material" uid="uid://bjh3py7naobcp" path="res://Assets/Levels/Vegetation/Forest_1_Tree_1_branch.tres" id="3_dpq2o"]
+
+[node name="Forest_1_Tree_1" type="MeshInstance3D"]
+mesh = ExtResource("1_vlc4j")
+surface_material_override/0 = ExtResource("2_k6uox")
+surface_material_override/1 = ExtResource("3_dpq2o")

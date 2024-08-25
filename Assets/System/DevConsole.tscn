@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://crj8iq4r5ekx4"]
+
+[ext_resource type="Script" path="res://Scripts/System/DevConsole.cs" id="1_qr6m5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g8we0"]
+content_margin_left = 10.0
+bg_color = Color(0, 0, 0, 0.886275)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k0245"]
+content_margin_left = 10.0
+bg_color = Color(0.0768358, 0.0768358, 0.0768358, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_phje7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ex1vp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xh5ei"]
+content_margin_left = 10.0
+bg_color = Color(0.194349, 0.194349, 0.194349, 1)
+
+[node name="DevConsole" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qr6m5")
+
+[node name="Messages" type="RichTextLabel" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_bottom = -279.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_g8we0")
+text = "
+"
+scroll_following = true
+
+[node name="Suggestions" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.54
+offset_top = -280.0
+offset_bottom = -286.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_k0245")
+
+[node name="Input" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.54
+anchor_right = 1.0
+anchor_bottom = 0.59
+offset_top = -286.72
+offset_bottom = -301.12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_phje7")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_ex1vp")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xh5ei")

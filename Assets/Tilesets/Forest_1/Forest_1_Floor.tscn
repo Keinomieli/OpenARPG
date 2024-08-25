@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1eoiyyrd0c8e"]
+
+[ext_resource type="ArrayMesh" uid="uid://82jv84gwjiel" path="res://Assets/Levels/Shapes/Basic/Basic_Shapes_Floor.tres" id="1_we77r"]
+[ext_resource type="Texture2D" uid="uid://cfd6263s0wg5a" path="res://Assets/Tilesets/Forest_1/muddy.png" id="2_qtvqg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wippf"]
+albedo_color = Color(0.705882, 0.705882, 0.705882, 1)
+albedo_texture = ExtResource("2_qtvqg")
+metallic_specular = 0.0
+
+[node name="Floor" type="MeshInstance3D"]
+mesh = ExtResource("1_we77r")
+surface_material_override/0 = SubResource("StandardMaterial3D_wippf")

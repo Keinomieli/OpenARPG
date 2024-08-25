@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://blrxt8w5tv8yj"]
+
+[ext_resource type="ArrayMesh" uid="uid://82jv84gwjiel" path="res://Assets/Levels/Shapes/Basic/Basic_Shapes_Floor.tres" id="1_ha7om"]
+[ext_resource type="Texture2D" uid="uid://b3najsvxjxypg" path="res://Assets/Tilesets/Dungeon_1/floor_1-7.png" id="2_dsacn"]
+[ext_resource type="Texture2D" uid="uid://ibjvximqbin2" path="res://Assets/Tilesets/Dungeon_1/floor_1-7n.png" id="3_178dm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w1hqy"]
+albedo_texture = ExtResource("2_dsacn")
+normal_enabled = true
+normal_texture = ExtResource("3_178dm")
+
+[node name="Floor" type="MeshInstance3D"]
+mesh = ExtResource("1_ha7om")
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")

@@ -1,0 +1,122 @@
+[gd_scene load_steps=19 format=3 uid="uid://o7g6tb31nbge"]
+
+[ext_resource type="ArrayMesh" uid="uid://du8oqagxnv2dr" path="res://Assets/Levels/Props/Illumination/WallTorch_1.tres" id="1_8mf06"]
+[ext_resource type="Shader" uid="uid://dxauottaan6lw" path="res://Shaders/Billboards/ToonCandle.tres" id="2_hl07c"]
+[ext_resource type="Texture2D" uid="uid://bd6qwu0kv7mnx" path="res://Assets/Billboards/candle_flame.png" id="3_hnwgk"]
+[ext_resource type="Shader" path="res://Shaders/Twinkle/Twinkle-point.gdshader" id="4_giflu"]
+
+[sub_resource type="Curve" id="Curve_auj8j"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 1, Vector2(0.385417, 1), 0.0, 0.0, 0, 0, Vector2(0.822917, 0), -2.28571, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3pxul"]
+curve = SubResource("Curve_auj8j")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3l7u4"]
+render_priority = 0
+shader = ExtResource("2_hl07c")
+shader_parameter/BooleanParameter = false
+shader_parameter/Modulate = Color(1, 1, 1, 1)
+shader_parameter/Noise_Frequency = Vector2(5, 5)
+shader_parameter/Noise_Speed = Vector2(0, 3)
+shader_parameter/Smooth_Noise = true
+shader_parameter/Noise_Strength = 0.2
+shader_parameter/Channel_R = Color(1, 0.733333, 0.2, 1)
+shader_parameter/Channel_G = Color(1, 0.333333, 0, 1)
+shader_parameter/Channel_B = Color(1, 0.15, 0.15, 1)
+shader_parameter/Channel_A = Color(0, 0, 0, 1)
+shader_parameter/Noise_Y_Curve = SubResource("CurveTexture_3pxul")
+shader_parameter/Shape_Texture = ExtResource("3_hnwgk")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ei512"]
+material = SubResource("ShaderMaterial_3l7u4")
+size = Vector2(0.6, 0.8)
+center_offset = Vector3(0, 0.4, 0)
+
+[sub_resource type="Gradient" id="Gradient_8sxtb"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kptvy"]
+gradient = SubResource("Gradient_8sxtb")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qbs6g"]
+render_priority = 0
+shader = ExtResource("2_hl07c")
+shader_parameter/BooleanParameter = true
+shader_parameter/Modulate = Color(1, 1, 1, 1)
+shader_parameter/Noise_Frequency = Vector2(5, 5)
+shader_parameter/Noise_Speed = Vector2(0, 3)
+shader_parameter/Smooth_Noise = true
+shader_parameter/Noise_Strength = 0.2
+shader_parameter/Channel_R = Color(1, 0.733333, 0.2, 1)
+shader_parameter/Channel_G = Color(1, 0.333333, 0, 1)
+shader_parameter/Channel_B = Color(1, 0.15, 0.15, 1)
+shader_parameter/Channel_A = Color(0, 0, 0, 1)
+shader_parameter/Noise_Y_Curve = SubResource("CurveTexture_3pxul")
+shader_parameter/Shape_Texture = SubResource("GradientTexture2D_kptvy")
+
+[sub_resource type="QuadMesh" id="QuadMesh_xq5gv"]
+material = SubResource("ShaderMaterial_qbs6g")
+size = Vector2(0.15, 0.15)
+
+[sub_resource type="Curve" id="Curve_l1jfb"]
+bake_resolution = 32
+_data = [Vector2(0, 0), 0.0, 5.68693, 0, 1, Vector2(0.0526316, 0.299312), 0.0, 0.0, 0, 0, Vector2(0.248538, 0.299312), 0.0, 0.0, 0, 0, Vector2(0.400585, 0.754014), 0.0, 0.0, 0, 0, Vector2(0.745614, 0.754014), 0.0, 0.0, 0, 0, Vector2(0.804094, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 1, 0]
+point_count = 7
+
+[sub_resource type="CurveTexture" id="CurveTexture_772mk"]
+width = 32
+texture_mode = 1
+curve = SubResource("Curve_l1jfb")
+
+[sub_resource type="Curve" id="Curve_4jl60"]
+bake_resolution = 32
+_data = [Vector2(0, 0), 0.0, 6.39779, 0, 1, Vector2(0.0467836, 0.299312), 0.0, 0.0, 0, 0, Vector2(0.204678, 0.299312), 0.0, 0.0, 0, 0, Vector2(0.502924, 0.597477), 0.0, 0.0, 0, 0, Vector2(0.599415, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 1, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_c8nxh"]
+width = 32
+texture_mode = 1
+curve = SubResource("Curve_4jl60")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gieke"]
+render_priority = 0
+shader = ExtResource("4_giflu")
+shader_parameter/intensity = 3.0
+shader_parameter/minDist = 0.0
+shader_parameter/maxDist = 8.0
+shader_parameter/distFalloff = 4.0
+shader_parameter/color = Color(1, 0.416667, 0, 1)
+shader_parameter/normalScale = 0.5
+shader_parameter/normalNegationRangeMin = 0.0
+shader_parameter/normalNegationRangeMax = 0.5
+shader_parameter/attenuation_curve = SubResource("CurveTexture_772mk")
+shader_parameter/lambert_curve = SubResource("CurveTexture_c8nxh")
+
+[sub_resource type="BoxMesh" id="BoxMesh_xj7ep"]
+material = SubResource("ShaderMaterial_gieke")
+flip_faces = true
+size = Vector3(16, 16, 16)
+
+[node name="WallTorch_1" type="MeshInstance3D"]
+mesh = ExtResource("1_8mf06")
+
+[node name="ToonCandle" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0482423, -0.456347)
+mesh = SubResource("QuadMesh_ei512")
+skeleton = NodePath("../..")
+
+[node name="ToonCandle2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.246216, -0.45211)
+mesh = SubResource("QuadMesh_xq5gv")
+skeleton = NodePath("../..")
+
+[node name="Twinkle_Point" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30692, -0.466761)
+mesh = SubResource("BoxMesh_xj7ep")
+skeleton = NodePath("../..")

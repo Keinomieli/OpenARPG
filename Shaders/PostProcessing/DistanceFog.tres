@@ -1,0 +1,260 @@
+[gd_resource type="VisualShader" load_steps=18 format=3 uid="uid://brcwe1bnf7uuc"]
+
+[sub_resource type="VisualShaderNodeVec3Parameter" id="VisualShaderNodeVec3Parameter_k8prf"]
+linked_parent_graph_frame = 32
+parameter_name = "PlayerVisionSource"
+qualifier = 1
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ay25h"]
+linked_parent_graph_frame = 29
+input_name = "screen_uv"
+
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_oauo3"]
+default_input_values = [1, 0.0, 2, 1.0, 3, 1.0, 4, 0.0]
+linked_parent_graph_frame = 32
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_ypa8s"]
+linked_parent_graph_frame = 32
+operator = 1
+
+[sub_resource type="VisualShaderNodeVectorLen" id="VisualShaderNodeVectorLen_wgff5"]
+linked_parent_graph_frame = 32
+
+[sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_mgct8"]
+expanded_output_ports = [0]
+linked_parent_graph_frame = 32
+parameter_name = "DistanceFogRange"
+qualifier = 1
+default_value_enabled = true
+default_value = Vector2(5, 10)
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_2cxpk"]
+linked_parent_graph_frame = 32
+function = 18
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_5wp0l"]
+linked_parent_graph_frame = 29
+size = Vector2(800, 480)
+expression = "float depth = texture(depth_texture, screen_uv).x;
+vec3 encoded_screen_pos = vec3(screen_uv * 2.0 - 1.0, depth);
+
+vec4 view = inv_proj_mat * vec4(encoded_screen_pos, 1.0);
+view.xyz /= view.w;
+
+vec4 world = inv_view_mat * inv_proj_mat * vec4(encoded_screen_pos, 1.0);
+pixel_world_position = world.xyz / world.w;
+
+linear_depth = -view.z;"
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_n60w4"]
+linked_parent_graph_frame = 29
+parameter_name = "Texture2DParameter"
+texture_filter = 1
+texture_repeat = 2
+texture_source = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_s5sff"]
+linked_parent_graph_frame = 29
+input_name = "inv_projection_matrix"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_fr8so"]
+linked_parent_graph_frame = 29
+input_name = "inv_view_matrix"
+
+[sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_nk2oo"]
+size = Vector2(1320, 780)
+title = "Reconstruct WorldPosition"
+attached_nodes = PackedInt32Array(25, 26, 2, 28, 27)
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_k0l6y"]
+linked_parent_graph_frame = 32
+parameter_name = "DistanceFogGradient"
+qualifier = 1
+texture_filter = 2
+texture_repeat = 2
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_ttnvl"]
+expanded_output_ports = [0]
+linked_parent_graph_frame = 32
+source = 5
+
+[sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_ymbb3"]
+size = Vector2(1664, 358)
+title = "World Distance Gradient"
+attached_nodes = PackedInt32Array(19, 21, 22, 23, 20, 24, 30, 31)
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ll5cy"]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_cugv7"]
+size = Vector2(360, 240)
+expression = "POSITION = vec4(vertex.xy, 1.0, 1.0);"
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_never, cull_disabled, diffuse_lambert, specular_schlick_ggx, depth_test_disabled, unshaded, skip_vertex_transform;
+
+uniform sampler2D Texture2DParameter : filter_nearest, repeat_disable, hint_depth_texture;
+global uniform vec3 PlayerVisionSource;
+global uniform vec2 DistanceFogRange = vec2(5.000000, 10.000000);
+global uniform sampler2D DistanceFogGradient : filter_linear, repeat_disable;
+
+
+
+void vertex() {
+// Input:2
+	vec3 n_out2p0 = VERTEX;
+
+
+	vec3 n_out4p0;
+// Expression:4
+	n_out4p0 = vec3(0.0, 0.0, 0.0);
+	{
+		POSITION = vec4(n_out2p0.xy, 1.0, 1.0);
+	}
+
+
+// Output:0
+	VERTEX = n_out4p0;
+
+
+}
+
+void fragment() {
+// Input:2
+	vec2 n_out2p0 = SCREEN_UV;
+
+
+// Input:27
+	mat4 n_out27p0 = INV_PROJECTION_MATRIX;
+
+
+// Input:28
+	mat4 n_out28p0 = INV_VIEW_MATRIX;
+
+
+	vec3 n_out25p0;
+	float n_out25p1;
+// Expression:25
+	n_out25p0 = vec3(0.0, 0.0, 0.0);
+	n_out25p1 = 0.0;
+	{
+		float depth = texture(Texture2DParameter, n_out2p0).x;
+		vec3 encoded_screen_pos = vec3(n_out2p0 * 2.0 - 1.0, depth);
+		
+		vec4 view = n_out27p0 * vec4(encoded_screen_pos, 1.0);
+		view.xyz /= view.w;
+		
+		vec4 world = n_out28p0 * n_out27p0 * vec4(encoded_screen_pos, 1.0);
+		n_out25p0 = world.xyz / world.w;
+		
+		n_out25p1 = -view.z;
+	}
+
+
+// Vector3Parameter:19
+	vec3 n_out19p0 = PlayerVisionSource;
+
+
+// VectorOp:21
+	vec3 n_out21p0 = n_out25p0 - n_out19p0;
+
+
+// VectorLen:22
+	float n_out22p0 = length(n_out21p0);
+
+
+// Vector2Parameter:23
+	vec2 n_out23p0 = DistanceFogRange;
+	float n_out23p1 = n_out23p0.r;
+	float n_out23p2 = n_out23p0.g;
+
+
+	float n_out20p0;
+// Remap:20
+	float n_in20p3 = 1.00000;
+	float n_in20p4 = 0.00000;
+	{
+		float __input_range = n_out23p2 - n_out23p1;
+		float __output_range = n_in20p4 - n_in20p3;
+		n_out20p0 = n_in20p3 + __output_range * ((n_out22p0 - n_out23p1) / __input_range);
+	}
+
+
+// FloatFunc:24
+	float n_out24p0 = min(max(n_out20p0, 0.0), 1.0);
+
+
+	vec4 n_out31p0;
+// Texture2D:31
+	n_out31p0 = texture(DistanceFogGradient, vec2(n_out24p0));
+	float n_out31p4 = n_out31p0.a;
+
+
+// Output:0
+	ALBEDO = vec3(n_out31p0.xyz);
+	ALPHA = n_out31p4;
+
+
+}
+"
+modes/depth_draw = 2
+modes/cull = 2
+flags/depth_test_disabled = true
+flags/unshaded = true
+flags/skip_vertex_transform = true
+nodes/vertex/0/position = Vector2(400, 180)
+nodes/vertex/2/node = SubResource("VisualShaderNodeInput_ll5cy")
+nodes/vertex/2/position = Vector2(-600, 180)
+nodes/vertex/4/node = SubResource("VisualShaderNodeExpression_cugv7")
+nodes/vertex/4/position = Vector2(-220, 140)
+nodes/vertex/4/size = Vector2(360, 240)
+nodes/vertex/4/input_ports = "0,4,vertex;"
+nodes/vertex/4/output_ports = "0,4,output0;"
+nodes/vertex/4/expression = "POSITION = vec4(vertex.xy, 1.0, 1.0);"
+nodes/vertex/connections = PackedInt32Array(2, 0, 4, 0, 4, 0, 0, 0)
+nodes/fragment/0/position = Vector2(1100, 260)
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_ay25h")
+nodes/fragment/2/position = Vector2(-2120, 100)
+nodes/fragment/19/node = SubResource("VisualShaderNodeVec3Parameter_k8prf")
+nodes/fragment/19/position = Vector2(-720, 280)
+nodes/fragment/20/node = SubResource("VisualShaderNodeRemap_oauo3")
+nodes/fragment/20/position = Vector2(40, 300)
+nodes/fragment/21/node = SubResource("VisualShaderNodeVectorOp_ypa8s")
+nodes/fragment/21/position = Vector2(-440, 100)
+nodes/fragment/22/node = SubResource("VisualShaderNodeVectorLen_wgff5")
+nodes/fragment/22/position = Vector2(-240, 120)
+nodes/fragment/23/node = SubResource("VisualShaderNodeVec2Parameter_mgct8")
+nodes/fragment/23/position = Vector2(-300, 300)
+nodes/fragment/24/node = SubResource("VisualShaderNodeFloatFunc_2cxpk")
+nodes/fragment/24/position = Vector2(380, 200)
+nodes/fragment/25/node = SubResource("VisualShaderNodeExpression_5wp0l")
+nodes/fragment/25/position = Vector2(-1700, 0)
+nodes/fragment/25/size = Vector2(800, 480)
+nodes/fragment/25/input_ports = "0,8,depth_texture;1,3,screen_uv;2,7,inv_proj_mat;3,7,inv_view_mat;"
+nodes/fragment/25/output_ports = "0,4,pixel_world_position;1,0,linear_depth;"
+nodes/fragment/25/expression = "float depth = texture(depth_texture, screen_uv).x;
+vec3 encoded_screen_pos = vec3(screen_uv * 2.0 - 1.0, depth);
+
+vec4 view = inv_proj_mat * vec4(encoded_screen_pos, 1.0);
+view.xyz /= view.w;
+
+vec4 world = inv_view_mat * inv_proj_mat * vec4(encoded_screen_pos, 1.0);
+pixel_world_position = world.xyz / world.w;
+
+linear_depth = -view.z;"
+nodes/fragment/26/node = SubResource("VisualShaderNodeTexture2DParameter_n60w4")
+nodes/fragment/26/position = Vector2(-2140, -220)
+nodes/fragment/27/node = SubResource("VisualShaderNodeInput_s5sff")
+nodes/fragment/27/position = Vector2(-2080, 200)
+nodes/fragment/28/node = SubResource("VisualShaderNodeInput_fr8so")
+nodes/fragment/28/position = Vector2(-2080, 300)
+nodes/fragment/29/node = SubResource("VisualShaderNodeFrame_nk2oo")
+nodes/fragment/29/position = Vector2(-2180, -260)
+nodes/fragment/30/node = SubResource("VisualShaderNodeTexture2DParameter_k0l6y")
+nodes/fragment/30/position = Vector2(300, 340)
+nodes/fragment/31/node = SubResource("VisualShaderNodeTexture_ttnvl")
+nodes/fragment/31/position = Vector2(700, 220)
+nodes/fragment/32/node = SubResource("VisualShaderNodeFrame_ymbb3")
+nodes/fragment/32/position = Vector2(-760, 60)
+nodes/fragment/connections = PackedInt32Array(19, 0, 21, 1, 21, 0, 22, 0, 22, 0, 20, 0, 23, 1, 20, 1, 23, 2, 20, 2, 20, 0, 24, 0, 2, 0, 25, 1, 26, 0, 25, 0, 27, 0, 25, 2, 28, 0, 25, 3, 25, 0, 21, 0, 30, 0, 31, 2, 24, 0, 31, 0, 31, 4, 0, 1, 31, 0, 0, 0)

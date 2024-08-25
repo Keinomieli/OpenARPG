@@ -1,0 +1,2493 @@
+[gd_scene load_steps=51 format=4 uid="uid://dv556wnsek460"]
+
+[ext_resource type="Script" path="res://Scripts/Levels/TileMapInstancer.cs" id="1_deo50"]
+[ext_resource type="TileSet" uid="uid://srdn5ww2qlyv" path="res://Assets/Tilesets/Dungeon_1/Dungeon_1_DesignSet.tres" id="2_rkqbf"]
+[ext_resource type="PackedScene" uid="uid://cpaco5u6n1urr" path="res://Assets/Tilesets/Dungeon_1/Dungeon_1_Floor.tscn" id="3_14rni"]
+[ext_resource type="Script" path="res://Scripts/Tools/EditorOnly.gd" id="4_5maw2"]
+[ext_resource type="Texture2D" uid="uid://c8w253rh1eaqk" path="res://Assets/Tilesets/Dungeon_1/wall_1-1.png" id="4_34wxw"]
+[ext_resource type="PackedScene" uid="uid://blbmhrhr3arah" path="res://Scripts/Tools/FakePlayerVisionSource.tscn" id="4_e8vvw"]
+[ext_resource type="PackedScene" uid="uid://b5lkeoboicufs" path="res://Assets/Tilesets/Dungeon_1/Dungeon_1_Inner_Corner.tscn" id="5_a212g"]
+[ext_resource type="Texture2D" uid="uid://j14r50q1bwbr" path="res://Assets/Tilesets/Dungeon_1/wall_1-1n.png" id="5_ocmbe"]
+[ext_resource type="PackedScene" uid="uid://cerlj5lxkjae5" path="res://Assets/Tilesets/Dungeon_1/Dungeon_1_Slope.tscn" id="7_8cfrj"]
+[ext_resource type="Shader" path="res://Shaders/Twinkle/Twinkle-point.gdshader" id="8_ckrje"]
+[ext_resource type="ArrayMesh" uid="uid://cpah3vdwcm3pb" path="res://Shaders/PostProcessing/FullScreenTriangle.tres" id="8_on47e"]
+[ext_resource type="PackedScene" uid="uid://dh5tmfulnsius" path="res://Assets/Tilesets/Dungeon_1/Dungeon_1_Outer_Corner.tscn" id="9_ikm6w"]
+[ext_resource type="Shader" uid="uid://bnhtg53qcic4f" path="res://Shaders/PostProcessing/SimpleAmbient.tres" id="9_u2g5p"]
+[ext_resource type="Script" path="res://Scripts/Levels/Weather.cs" id="10_06sdd"]
+[ext_resource type="Texture2D" uid="uid://b3najsvxjxypg" path="res://Assets/Tilesets/Dungeon_1/floor_1-7.png" id="10_huss5"]
+[ext_resource type="Texture2D" uid="uid://03rfpcqu3tlm" path="res://Assets/Tilesets/Dungeon_1/floor_2-1.png" id="10_if20c"]
+[ext_resource type="Texture2D" uid="uid://dppqshfxuemci" path="res://Assets/Tilesets/Dungeon_1/floor_2-1n.png" id="11_4or48"]
+[ext_resource type="PackedScene" uid="uid://blrxt8w5tv8yj" path="res://Assets/Tilesets/Dungeon_1/Dungeon_1_Floor_Alt.tscn" id="11_hjy6o"]
+[ext_resource type="PackedScene" uid="uid://o7g6tb31nbge" path="res://Assets/Levels/Props/Illumination/WallTorch_1.tscn" id="11_k520o"]
+[ext_resource type="Texture2D" uid="uid://ibjvximqbin2" path="res://Assets/Tilesets/Dungeon_1/floor_1-7n.png" id="11_t08jk"]
+[ext_resource type="Shader" uid="uid://brcwe1bnf7uuc" path="res://Shaders/PostProcessing/DistanceFog.tres" id="16_kx47r"]
+[ext_resource type="Script" path="res://Scripts/Player/TeleportPlayerAtStart.cs" id="17_lluta"]
+[ext_resource type="PackedScene" uid="uid://dvkkdqtuai3um" path="res://Assets/Levels/Props/Illumination/ToonFire.tscn" id="19_1cfar"]
+[ext_resource type="Script" path="res://Scripts/Levels/InstancerLayer.cs" id="20_mfwyi"]
+[ext_resource type="PackedScene" uid="uid://sx32uwkpbr2g" path="res://Assets/Tilesets/Dungeon_1/Dungeon_1_Entrance.tscn" id="25_3cc7l"]
+[ext_resource type="Script" path="res://Scripts/Levels/ChangeLevelArea.cs" id="26_ye1kj"]
+[ext_resource type="ArrayMesh" uid="uid://rmdyug2kyaem" path="res://Assets/Levels/Props/Containers/Barrel-Open.tres" id="27_fv4nq"]
+[ext_resource type="ArrayMesh" uid="uid://dj4jccusradvn" path="res://Assets/Levels/Props/Containers/Crate-Open.tres" id="28_vljvq"]
+[ext_resource type="ArrayMesh" uid="uid://rpxq341l3u0f" path="res://Assets/Levels/Props/Containers/Crate.tres" id="29_hdnm1"]
+[ext_resource type="ArrayMesh" uid="uid://dfyn3ju05bxfd" path="res://Assets/Levels/Props/Containers/Barrel.tres" id="30_opmd5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e7e7x"]
+albedo_texture = ExtResource("4_34wxw")
+normal_enabled = true
+normal_texture = ExtResource("5_ocmbe")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ckjqb"]
+albedo_texture = ExtResource("4_34wxw")
+normal_enabled = true
+normal_texture = ExtResource("5_ocmbe")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w1hqy"]
+albedo_texture = ExtResource("10_huss5")
+normal_enabled = true
+normal_texture = ExtResource("11_t08jk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kuswv"]
+albedo_texture = ExtResource("10_if20c")
+normal_enabled = true
+normal_texture = ExtResource("11_4or48")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_21pel"]
+albedo_texture = ExtResource("4_34wxw")
+normal_enabled = true
+normal_texture = ExtResource("5_ocmbe")
+
+[sub_resource type="BoxMesh" id="BoxMesh_tvdqu"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="Curve" id="Curve_l1jfb"]
+bake_resolution = 32
+_data = [Vector2(0, 0), 0.0, 5.68693, 0, 1, Vector2(0.0526316, 0.299312), 0.0, 0.0, 0, 0, Vector2(0.248538, 0.299312), 0.0, 0.0, 0, 0, Vector2(0.400585, 0.754014), 0.0, 0.0, 0, 0, Vector2(0.745614, 0.754014), 0.0, 0.0, 0, 0, Vector2(0.804094, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 1, 0]
+point_count = 7
+
+[sub_resource type="CurveTexture" id="CurveTexture_772mk"]
+width = 32
+texture_mode = 1
+curve = SubResource("Curve_l1jfb")
+
+[sub_resource type="Curve" id="Curve_4jl60"]
+bake_resolution = 32
+_data = [Vector2(0, 0), 0.0, 6.39779, 0, 1, Vector2(0.0467836, 0.299312), 0.0, 0.0, 0, 0, Vector2(0.204678, 0.299312), 0.0, 0.0, 0, 0, Vector2(0.502924, 0.597477), 0.0, 0.0, 0, 0, Vector2(0.599415, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 1, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_c8nxh"]
+width = 32
+texture_mode = 1
+curve = SubResource("Curve_4jl60")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yvvcf"]
+render_priority = 0
+shader = ExtResource("8_ckrje")
+shader_parameter/intensity = 1.0
+shader_parameter/minDist = 0.0
+shader_parameter/maxDist = 12.0
+shader_parameter/distFalloff = 1.0
+shader_parameter/color = Color(1, 0.533333, 0.2, 1)
+shader_parameter/normalScale = 0.5
+shader_parameter/normalNegationRangeMin = 0.0
+shader_parameter/normalNegationRangeMax = 0.5
+shader_parameter/attenuation_curve = SubResource("CurveTexture_772mk")
+shader_parameter/lambert_curve = SubResource("CurveTexture_c8nxh")
+
+[sub_resource type="BoxMesh" id="BoxMesh_88xlm"]
+material = SubResource("ShaderMaterial_yvvcf")
+flip_faces = true
+size = Vector3(24, 24, 24)
+
+[sub_resource type="Gradient" id="Gradient_3e23s"]
+colors = PackedColorArray(0.057, 0.1785, 0.3, 1, 0.6, 0.733333, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ape6u"]
+gradient = SubResource("Gradient_3e23s")
+width = 16
+
+[sub_resource type="Gradient" id="Gradient_4r6ge"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_am3bm"]
+gradient = SubResource("Gradient_4r6ge")
+width = 16
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lv03n"]
+render_priority = -128
+shader = ExtResource("9_u2g5p")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_w4qx5"]
+_surfaces = [{
+"aabb": AABB(-1, -1, 0, 4, 4, 1e-05),
+"format": 34359742465,
+"index_count": 3,
+"index_data": PackedByteArray("AAACAAEA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 3,
+"vertex_data": PackedByteArray("AACAvwAAgL8AAAAAAACAvwAAQEAAAAAAAABAQAAAgL8AAAAA")
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5m5mb"]
+render_priority = 127
+shader = ExtResource("16_kx47r")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_464kw"]
+size = Vector3(1, 4, 3)
+
+[node name="Dungeon_1" type="Node"]
+
+[node name="CreationRoot" type="Node3D" parent="."]
+
+[node name="@MeshInstance3D@29841" parent="CreationRoot" instance=ExtResource("5_a212g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -4, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_e7e7x")
+
+[node name="@MeshInstance3D@29842" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -4, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29843" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -4, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29844" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 20, -4, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29845" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -4, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29846" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -4, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29847" parent="CreationRoot" instance=ExtResource("5_a212g")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20, -4, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_e7e7x")
+
+[node name="@MeshInstance3D@29848" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 22, -4, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29849" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 22, -4, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29850" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, -4, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29851" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 22, -4, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29852" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 22, -4, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29853" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 22, -4, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29854" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 22, -4, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29855" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 24, -4, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29856" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, -4, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29857" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 24, -4, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29858" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, -4, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29859" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 24, -4, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29860" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 24, -4, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29861" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, -4, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29862" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 26, -4, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29863" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 26, -4, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29864" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, -4, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29865" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 26, -4, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29866" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 26, -4, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29867" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 26, -4, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29868" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 26, -4, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29869" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 28, -4, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29870" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 28, -4, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29871" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 28, -4, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29872" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 28, -4, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29873" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 28, -4, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29874" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 28, -4, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29875" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 28, -4, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29876" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 30, -4, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29877" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 30, -4, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29878" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -4, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29879" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -4, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29880" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 30, -4, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29881" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -4, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29882" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30, -4, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29883" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 32, -4, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29884" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, -4, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29885" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, -4, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29886" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 32, -4, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29887" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, -4, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29888" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 32, -4, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29889" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 32, -4, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29890" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 34, -4, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29891" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 34, -4, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29892" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 34, -4, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29893" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 34, -4, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29894" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 34, -4, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29895" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 34, -4, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29896" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 34, -4, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29897" parent="CreationRoot" instance=ExtResource("5_a212g")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 36, -4, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_e7e7x")
+
+[node name="@MeshInstance3D@29898" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 36, -4, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29899" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 36, -4, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29900" parent="CreationRoot" instance=ExtResource("11_hjy6o")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 36, -4, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_w1hqy")
+
+[node name="@MeshInstance3D@29901" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 36, -4, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29902" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 36, -4, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29903" parent="CreationRoot" instance=ExtResource("5_a212g")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 36, -4, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_e7e7x")
+
+[node name="@MeshInstance3D@29904" parent="CreationRoot" instance=ExtResource("5_a212g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_e7e7x")
+
+[node name="@MeshInstance3D@29905" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29906" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29907" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29908" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29909" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29910" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29911" parent="CreationRoot" instance=ExtResource("5_a212g")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 0, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_e7e7x")
+
+[node name="@MeshInstance3D@29912" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -6, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29913" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -6, 0, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29914" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -6, 0, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29915" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29916" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -6, 0, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29917" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -6, 0, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29918" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -6, 0, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29919" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 0, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29920" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -4, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29921" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4, 0, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29922" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29923" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29924" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -4, 0, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29925" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4, 0, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29926" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -4, 0, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29927" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29928" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -2, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29929" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -2, 0, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29930" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -2, 0, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29931" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29932" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 0, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29933" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 0, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29934" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -2, 0, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29935" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 0, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29936" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29937" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29938" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29939" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29940" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29941" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29942" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29943" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29944" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29945" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29946" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 2, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29947" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29948" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29949" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 2, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29950" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 2, 0, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29951" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 2, 0, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29952" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29953" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29954" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29955" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29956" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 4, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29957" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, 0, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29958" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, 0, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29959" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29960" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29961" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 4, 0, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29962" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 4, 0, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29963" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, 0, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29964" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 6, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29965" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6, 0, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29966" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6, 0, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29967" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29968" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29969" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 6, 0, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29970" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 6, 0, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29971" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6, 0, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29972" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 8, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29973" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29974" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 8, 0, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29975" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29976" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8, 0, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29977" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8, 0, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29978" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8, 0, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29979" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8, 0, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29980" parent="CreationRoot" instance=ExtResource("5_a212g")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 10, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_e7e7x")
+
+[node name="@MeshInstance3D@29981" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, 0, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29982" parent="CreationRoot" instance=ExtResource("9_ikm6w")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 10, 0, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_21pel")
+
+[node name="@MeshInstance3D@29983" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29984" parent="CreationRoot" instance=ExtResource("9_ikm6w")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, 0, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_21pel")
+
+[node name="@MeshInstance3D@29985" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, 0, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29986" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, 0, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29987" parent="CreationRoot" instance=ExtResource("5_a212g")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, 0, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_e7e7x")
+
+[node name="@MeshInstance3D@29988" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 12, 0, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29989" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29990" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 0, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29991" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 14, 0, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29992" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29993" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14, 0, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29994" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 16, 0, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29995" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@29996" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16, 0, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29997" parent="CreationRoot" instance=ExtResource("5_a212g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_e7e7x")
+
+[node name="@MeshInstance3D@29998" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@29999" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30000" parent="CreationRoot" instance=ExtResource("9_ikm6w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_21pel")
+
+[node name="@MeshInstance3D@30001" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30002" parent="CreationRoot" instance=ExtResource("9_ikm6w")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18, 0, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_21pel")
+
+[node name="@MeshInstance3D@30003" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30004" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30005" parent="CreationRoot" instance=ExtResource("5_a212g")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18, 0, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_e7e7x")
+
+[node name="@MeshInstance3D@30006" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 20, 0, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30007" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30008" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20, 0, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30009" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 22, 0, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30010" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30011" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 22, 0, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30012" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 24, 0, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30013" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 24, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30014" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 0, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30015" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 26, 0, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30016" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30017" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 26, 0, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30018" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 28, 0, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30019" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 28, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30020" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 28, 0, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30021" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 30, 0, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30022" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30023" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30, 0, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30024" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 32, 0, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30025" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 32, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30026" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 32, 0, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30027" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 34, 0, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30028" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 34, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30029" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 34, 0, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30030" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 36, 0, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30031" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30032" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 36, 0, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30033" parent="CreationRoot" instance=ExtResource("5_a212g")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 38, 0, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_e7e7x")
+
+[node name="@MeshInstance3D@30034" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 38, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30035" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 38, 0, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30036" parent="CreationRoot" instance=ExtResource("9_ikm6w")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 38, 0, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_21pel")
+
+[node name="@MeshInstance3D@30037" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 38, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30038" parent="CreationRoot" instance=ExtResource("9_ikm6w")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 38, 0, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_21pel")
+
+[node name="@MeshInstance3D@30039" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 38, 0, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30040" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 38, 0, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30041" parent="CreationRoot" instance=ExtResource("5_a212g")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 38, 0, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_e7e7x")
+
+[node name="@MeshInstance3D@30042" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 40, 0, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30043" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 40, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30044" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 40, 0, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30045" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 42, 0, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30046" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 0, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30047" parent="CreationRoot" instance=ExtResource("7_8cfrj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 42, 0, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_ckjqb")
+
+[node name="@MeshInstance3D@30048" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30049" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30050" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30051" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -16, 4, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30052" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16, 4, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30053" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16, 4, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30054" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16, 4, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30055" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 4, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30056" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -16, 4, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30057" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16, 4, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30058" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -16, 4, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30059" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16, 4, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30060" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -16, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30061" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -16, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30062" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30063" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30064" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30065" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30066" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30067" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30068" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14, 4, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30069" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -14, 4, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30070" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 4, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30071" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 4, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30072" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -14, 4, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30073" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -14, 4, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30074" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 4, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30075" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -14, 4, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30076" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 4, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30077" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30078" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -14, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30079" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30080" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -14, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30081" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -14, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30082" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30083" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30084" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30085" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 4, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30086" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12, 4, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30087" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -12, 4, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30088" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12, 4, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30089" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -12, 4, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30090" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12, 4, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30091" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12, 4, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30092" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12, 4, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30093" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12, 4, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30094" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30095" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30096" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30097" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -12, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30098" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30099" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30100" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30101" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30102" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -10, 4, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30103" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30104" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -10, 4, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30105" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -10, 4, 4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30106" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4, 6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30107" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -10, 4, 8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30108" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -10, 4, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30109" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10, 4, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30110" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30111" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30112" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30113" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30114" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30115" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30116" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -8, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30117" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30118" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -8, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30119" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -8, 4, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30120" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30121" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30122" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30123" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30124" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -8, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30125" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30126" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30127" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -6, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30128" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 4, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30129" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -6, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30130" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30131" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -6, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30132" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -6, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30133" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30134" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30135" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30136" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30137" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30138" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30139" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30140" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30141" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30142" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -4, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30143" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30144" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -2, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30145" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -2, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30146" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 4, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30147" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -2, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30148" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30149" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30150" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -2, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30151" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -2, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30152" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30153" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30154" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30155" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 4, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30156" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30157" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30158" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30159" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30160" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 2, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30161" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30162" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30163" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 4, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30164" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30165" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30166" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30167" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30168" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 4, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30169" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30170" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 4, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30171" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 4, 4, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30172" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30173" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30174" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30175" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 4, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30176" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 4, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30177" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 6, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30178" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 6, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30179" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30180" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6, 4, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30181" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30182" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 6, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30183" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30184" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30185" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30186" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30187" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30188" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30189" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 8, 4, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30190" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30191" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30192" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 8, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30193" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30194" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 8, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30195" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30196" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30197" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 10, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30198" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, 4, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30199" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30200" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30201" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 10, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30202" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 10, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30203" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30204" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30205" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30206" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30207" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12, 4, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30208" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 4, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30209" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 12, 4, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30210" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 12, 4, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30211" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12, 4, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30212" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 4, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30213" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30214" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30215" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30216" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30217" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30218" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 14, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30219" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 14, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30220" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30221" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 4, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30222" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 14, 4, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30223" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14, 4, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30224" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 14, 4, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30225" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 14, 4, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30226" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 14, 4, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30227" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 14, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30228" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 14, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30229" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 14, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30230" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 14, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30231" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30232" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30233" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30234" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 16, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30235" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 4, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30236" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 4, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30237" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 16, 4, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30238" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16, 4, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30239" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 4, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30240" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 4, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30241" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 16, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30242" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30243" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30244" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30245" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 16, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30246" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 18, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30247" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30248" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30249" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30250" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30251" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 18, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30252" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30253" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 18, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30254" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30255" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30256" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 20, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30257" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30258" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30259" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30260" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30261" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 20, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30262" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 22, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30263" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 22, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30264" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30265" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30266" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 22, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30267" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 22, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30268" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 22, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30269" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 22, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30270" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30271" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 24, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30272" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 24, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30273" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 24, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30274" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 24, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30275" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 24, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30276" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 24, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30277" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 24, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30278" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 26, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30279" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 26, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30280" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 26, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30281" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 26, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30282" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 26, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30283" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 26, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30284" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 26, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30285" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 26, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30286" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30287" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 28, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30288" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 28, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30289" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 28, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30290" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30291" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 28, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30292" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 28, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30293" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 28, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30294" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 30, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30295" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30296" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30297" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30298" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30299" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30300" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30301" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30302" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 32, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30303" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 32, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30304" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 32, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30305" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 32, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30306" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 32, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30307" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 32, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30308" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 32, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30309" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30310" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 34, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30311" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 34, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30312" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 34, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30313" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 34, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30314" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 34, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30315" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 34, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30316" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 34, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30317" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 34, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30318" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 36, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30319" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 36, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30320" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30321" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 36, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30322" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 36, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30323" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30324" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 36, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30325" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 36, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30326" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30327" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 38, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30328" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30329" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 38, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30330" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 38, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30331" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 38, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30332" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 38, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30333" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30334" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 40, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30335" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30336" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 40, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30337" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 40, 4, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30338" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 40, 4, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30339" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 4, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30340" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 40, 4, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30341" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 40, 4, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30342" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 4, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30343" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30344" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 40, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30345" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 40, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30346" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30347" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 40, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30348" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 42, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30349" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30350" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 42, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30351" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 4, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30352" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 42, 4, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30353" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 42, 4, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30354" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 4, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30355" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 42, 4, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30356" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 4, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30357" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30358" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 42, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30359" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30360" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 42, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30361" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 42, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30362" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30363" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30364" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 44, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30365" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 44, 4, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30366" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 44, 4, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30367" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 4, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30368" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 44, 4, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30369" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 44, 4, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30370" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 44, 4, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30371" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 44, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30372" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30373" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30374" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 44, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30375" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30376" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 46, 4, -8)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30377" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 46, 4, -6)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30378" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 46, 4, -4)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30379" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 4, -2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30380" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 46, 4, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30381" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 4, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30382" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 4, 10)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30383" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 46, 4, 12)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30384" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 46, 4, 14)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30385" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 46, 4, 16)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30386" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 4, 18)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30387" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 46, 4, 20)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30388" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 46, 4, 22)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="@MeshInstance3D@30389" parent="CreationRoot" instance=ExtResource("3_14rni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 4, 24)
+surface_material_override/0 = SubResource("StandardMaterial3D_kuswv")
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="ToonFire2" parent="Props" instance=ExtResource("19_1cfar")]
+transform = Transform3D(0.4, 0, 0, 0, 1, 0, 0, 0, 0.4, 4, 1.47, 2)
+visible = false
+skeleton = NodePath("..")
+
+[node name="ToonFire" parent="Props" instance=ExtResource("19_1cfar")]
+transform = Transform3D(0.4, 0, 0, 0, 1, 0, 0, 0, 0.4, -2, 1.47, 2)
+visible = false
+skeleton = NodePath("..")
+
+[node name="TeleportPlayerAtStart" type="MeshInstance3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 16)
+mesh = SubResource("BoxMesh_tvdqu")
+skeleton = NodePath("../..")
+script = ExtResource("17_lluta")
+
+[node name="BarrelsCratesBarrel-open" type="MeshInstance3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5639, 0, 1.47397)
+mesh = ExtResource("27_fv4nq")
+skeleton = NodePath("../..")
+
+[node name="BarrelsCratesCrate-open" type="MeshInstance3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.99291, 0, 1.60982)
+mesh = ExtResource("28_vljvq")
+skeleton = NodePath("../..")
+
+[node name="BarrelsCratesCrate-open2" type="MeshInstance3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.31134, 0, 2.91602)
+mesh = ExtResource("28_vljvq")
+skeleton = NodePath("../..")
+
+[node name="Crate" type="MeshInstance3D" parent="Props/BarrelsCratesCrate-open2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5113, 0, 9.38398)
+mesh = ExtResource("29_hdnm1")
+
+[node name="Barrel" type="MeshInstance3D" parent="Props/BarrelsCratesCrate-open2/Crate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0.300001)
+mesh = ExtResource("30_opmd5")
+
+[node name="Barrel" type="MeshInstance3D" parent="Props/BarrelsCratesCrate-open2/Crate/Barrel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7, 0, -1.7)
+mesh = ExtResource("30_opmd5")
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="WallTorch_1" parent="Lights" instance=ExtResource("11_k520o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, 14)
+skeleton = NodePath("../..")
+
+[node name="WallTorch_2" parent="Lights" instance=ExtResource("11_k520o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, 14)
+skeleton = NodePath("../..")
+
+[node name="WallTorch_8" parent="Lights" instance=ExtResource("11_k520o")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 2, 10)
+skeleton = NodePath("../..")
+
+[node name="WallTorch_3" parent="Lights" instance=ExtResource("11_k520o")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 6, 2, 0)
+skeleton = NodePath("../..")
+
+[node name="WallTorch_4" parent="Lights" instance=ExtResource("11_k520o")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -4, 2, 0)
+skeleton = NodePath("../..")
+
+[node name="WallTorch_6" parent="Lights" instance=ExtResource("11_k520o")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 14, 2, 4)
+skeleton = NodePath("../..")
+
+[node name="WallTorch_5" parent="Lights" instance=ExtResource("11_k520o")]
+transform = Transform3D(7.54979e-08, 0, -1, 0, 1, 0, 1, 0, 7.54979e-08, -8, 2, 7)
+skeleton = NodePath("../..")
+
+[node name="Twinkle_Point" type="MeshInstance3D" parent="Lights"]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0.976986, 5.70517, 7)
+mesh = SubResource("BoxMesh_88xlm")
+skeleton = NodePath("../..")
+
+[node name="ToonFire" parent="Lights" instance=ExtResource("19_1cfar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 2, 3)
+skeleton = NodePath("../../..")
+
+[node name="ToonFire2" parent="Lights" instance=ExtResource("19_1cfar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 2, 9)
+skeleton = NodePath("../../..")
+
+[node name="Weather" type="Node" parent="."]
+script = ExtResource("10_06sdd")
+ambientDirection = Vector3(1, 6, 3)
+ambientIntensity = 0.25
+ambientGradient = SubResource("GradientTexture1D_ape6u")
+distanceFogRange = Vector2(10, 25)
+distanceFogGradient = SubResource("GradientTexture1D_am3bm")
+
+[node name="_dev" type="Node" parent="."]
+script = ExtResource("4_5maw2")
+
+[node name="Instancer" type="Node3D" parent="_dev" node_paths=PackedStringArray("designsHierarchy", "creationRoot")]
+script = ExtResource("1_deo50")
+designsHierarchy = NodePath("../Design")
+creationRoot = NodePath("../../CreationRoot")
+
+[node name="Design" type="Node2D" parent="_dev"]
+position = Vector2(-16, -16)
+
+[node name="TileMapLayer-1" type="TileMapLayer" parent="_dev/Design"]
+tile_map_data = PackedByteArray("AAAKAAMABQAAAAEAAAALAAMABQAAAAEAAAAMAAMABQAAAAEAAAANAAMABQAAAAEAAAAOAAMABQAAAAEAAAAPAAMABQAAAAEAAAAQAAMABQAAAAEAAAARAAMABQAAAAEAAAASAAMABQAAAAEAAAASAAQABQACAAIAAAASAAUABQACAAIAAAASAAYABQAEAAIAAAASAAIABQACAAIAAAASAAEABQACAAIAAAASAAAABQAEAAEAAAAKAAYABQAEAAMAAAAKAAUABQACAAAAAAAKAAQABQACAAAAAAAKAAIABQACAAAAAAAKAAEABQACAAAAAAAKAAAABQAEAAAAAAALAAYABQACAAMAAAAMAAYABQACAAMAAAANAAYABQACAAMAAAAOAAYABQACAAMAAAAPAAYABQACAAMAAAAQAAYABQACAAMAAAARAAYABQACAAMAAAALAAAABQACAAEAAAAMAAAABQACAAEAAAANAAAABQACAAEAAAAOAAAABQACAAEAAAAPAAAABQACAAEAAAAQAAAABQACAAEAAAARAAAABQACAAEAAAALAAQABQAAAAEAAAALAAUABQAAAAEAAAAMAAUABQAAAAEAAAANAAUABQAAAAEAAAAOAAUABQAAAAEAAAAPAAUABQAAAAEAAAAQAAUABQAAAAEAAAARAAUABQAAAAEAAAAMAAQABQAAAAEAAAARAAQABQAAAAEAAAAQAAQABQAAAAEAAAAPAAQABQAAAAEAAAAOAAQABQAAAAEAAAANAAQABQAAAAEAAAALAAIABQAAAAEAAAALAAEABQAAAAEAAAAMAAEABQAAAAEAAAANAAEABQAAAAEAAAAOAAEABQAAAAEAAAAPAAEABQAAAAEAAAAQAAEABQAAAAEAAAARAAEABQAAAAEAAAARAAIABQAAAAEAAAAQAAIABQAAAAEAAAAPAAIABQAAAAEAAAAOAAIABQAAAAEAAAANAAIABQAAAAEAAAAMAAIABQAAAAEAAAA=")
+tile_set = ExtResource("2_rkqbf")
+script = ExtResource("20_mfwyi")
+yOffset = -4.0
+
+[node name="TileMapLayer0" type="TileMapLayer" parent="_dev/Design"]
+tile_map_data = PackedByteArray("AAAAAAAABQACAAEAAAAAAAEABQAAAAAAAAAAAAIABQAAAAAAAAAAAAMABQAAAAAAAAAAAAQABQAAAAAAAAAAAAUABQAAAAAAAAAAAAYABQAAAAAAAAAAAAcABQAAAAAAAAAAAAgABQAAAAAAAAABAAAABQACAAEAAAABAAEABQAAAAAAAAABAAIABQAAAAAAAAABAAMABQAAAAAAAAABAAQABQAAAAAAAAABAAUABQAAAAAAAAABAAYABQAAAAAAAAABAAcABQAAAAAAAAABAAgABQAAAAAAAAACAAAABQACAAEAAAACAAEABQAAAAAAAAACAAIABQAAAAAAAAACAAMABQAAAAAAAAACAAQABQAAAAAAAAACAAUABQAAAAAAAAACAAYABQAAAAAAAAACAAcABQACAAMAAAADAAAABQACAAEAAAADAAEABQAAAAAAAAADAAIABQAAAAAAAAADAAMABQAAAAAAAAADAAQABQAAAAAAAAADAAUABQAAAAAAAAADAAYABQAAAAAAAAADAAcABQACAAMAAAAEAAAABQACAAEAAAAEAAEABQAAAAAAAAAEAAIABQAAAAAAAAAEAAMABQAAAAAAAAAEAAQABQAAAAAAAAAEAAUABQAAAAAAAAAEAAYABQAAAAAAAAAEAAcABQACAAMAAAAFAAAABQAEAAEAAAAFAAEABQACAAIAAAAFAAIABQADAAEAAAAFAAMABQAAAAAAAAAFAAQABQADAAIAAAAFAAUABQACAAIAAAAFAAYABQACAAIAAAAFAAcABQAEAAIAAAAGAAIABQACAAEAAAAGAAMABQAAAAAAAAAGAAQABQACAAMAAAAHAAIABQACAAEAAAAHAAMABQAAAAAAAAAHAAQABQACAAMAAAAIAAIABQACAAEAAAAIAAMABQAAAAAAAAAIAAQABQACAAMAAAAJAAAABQACAAAAAAAJAAEABQACAAAAAAAJAAIABQADAAAAAAAJAAMABQAAAAAAAAAJAAQABQADAAMAAAAJAAUABQACAAAAAAAJAAYABQACAAAAAAAJAAcABQAEAAMAAAAKAAMABQAAAAAAAAAKAAcABQACAAMAAAALAAMABQAAAAAAAAALAAcABQACAAMAAAAMAAMABQAAAAAAAAAMAAcABQACAAMAAAANAAMABQAAAAAAAAANAAcABQACAAMAAAAOAAMABQAAAAAAAAAOAAcABQACAAMAAAAPAAMABQAAAAAAAAAPAAcABQACAAMAAAAQAAMABQAAAAAAAAAQAAcABQACAAMAAAARAAMABQAAAAAAAAARAAcABQACAAMAAAASAAMABQAAAAAAAAASAAcABQACAAMAAAATAAAABQACAAIAAAATAAEABQACAAIAAAATAAIABQADAAEAAAATAAMABQAAAAAAAAATAAQABQADAAIAAAATAAUABQACAAIAAAATAAYABQACAAIAAAATAAcABQAEAAIAAAAUAAIABQACAAEAAAAUAAMABQAAAAAAAAAUAAQABQACAAMAAAAVAAIABQACAAEAAAAVAAMABQAAAAAAAAAVAAQABQACAAMAAAD8/wAABQAEAAAAAAD8/wEABQACAAAAAAD8/wIABQACAAAAAAD8/wMABQACAAAAAAD8/wQABQACAAAAAAD8/wUABQACAAAAAAD8/wYABQACAAAAAAD8/wcABQAEAAMAAAD9/wAABQACAAEAAAD9/wEABQAAAAAAAAD9/wIABQAAAAAAAAD9/wMABQAAAAAAAAD9/wQABQAAAAAAAAD9/wUABQAAAAAAAAD9/wYABQAAAAAAAAD9/wcABQACAAMAAAD+/wAABQACAAEAAAD+/wEABQAAAAAAAAD+/wIABQAAAAAAAAD+/wMABQAAAAAAAAD+/wQABQAAAAAAAAD+/wUABQAAAAAAAAD+/wYABQAAAAAAAAD+/wcABQACAAMAAAD//wAABQACAAEAAAD//wEABQAAAAAAAAD//wIABQAAAAAAAAD//wMABQAAAAAAAAD//wQABQAAAAAAAAD//wUABQAAAAAAAAD//wYABQAAAAAAAAD//wcABQACAAMAAAAJAP//BQAEAAAAAAAKAP//BQACAAEAAAALAP//BQACAAEAAAAMAP//BQACAAEAAAANAP//BQACAAEAAAAOAP//BQACAAEAAAAPAP//BQACAAEAAAAQAP//BQACAAEAAAARAP//BQACAAEAAAASAP//BQACAAEAAAATAP//BQAEAAEAAAAAAAkABQAAAAAAAAABAAkABQAAAAAAAAA=")
+tile_set = ExtResource("2_rkqbf")
+script = ExtResource("20_mfwyi")
+
+[node name="TileMapLayer1" type="TileMapLayer" parent="_dev/Design"]
+tile_map_data = PackedByteArray("AAABAP7/BQAAAAAAAAAAAP7/BQAAAAAAAAADAAgABQAAAAAAAAADAAkABQAAAAAAAAADAAoABQAAAAAAAAADAAsABQAAAAAAAAADAAwABQAAAAAAAAAEAAgABQAAAAAAAAAEAAkABQAAAAAAAAAEAAoABQAAAAAAAAAEAAsABQAAAAAAAAAEAAwABQAAAAAAAAAFAAgABQAAAAAAAAAFAAkABQAAAAAAAAAFAAoABQAAAAAAAAAFAAsABQAAAAAAAAAFAAwABQAAAAAAAAAGAAgABQAAAAAAAAAGAAkABQAAAAAAAAAGAAoABQAAAAAAAAAGAAsABQAAAAAAAAAGAAwABQAAAAAAAAAHAAgABQAAAAAAAAAHAAkABQAAAAAAAAAHAAoABQAAAAAAAAAHAAsABQAAAAAAAAAHAAwABQAAAAAAAAAIAAgABQAAAAAAAAAIAAkABQAAAAAAAAAIAAoABQAAAAAAAAAIAAsABQAAAAAAAAAIAAwABQAAAAAAAAAJAAgABQAAAAAAAAAJAAkABQAAAAAAAAAJAAoABQAAAAAAAAAJAAsABQAAAAAAAAAJAAwABQAAAAAAAAAKAAgABQAAAAAAAAAKAAkABQAAAAAAAAAKAAoABQAAAAAAAAAKAAsABQAAAAAAAAAKAAwABQAAAAAAAAALAAgABQAAAAAAAAALAAkABQAAAAAAAAALAAoABQAAAAAAAAALAAsABQAAAAAAAAALAAwABQAAAAAAAAAMAAgABQAAAAAAAAAMAAkABQAAAAAAAAAMAAoABQAAAAAAAAAMAAsABQAAAAAAAAAMAAwABQAAAAAAAAANAAgABQAAAAAAAAANAAkABQAAAAAAAAANAAoABQAAAAAAAAANAAsABQAAAAAAAAANAAwABQAAAAAAAAAOAAgABQAAAAAAAAAOAAkABQAAAAAAAAAOAAoABQAAAAAAAAAOAAsABQAAAAAAAAAOAAwABQAAAAAAAAAPAAgABQAAAAAAAAAPAAkABQAAAAAAAAAPAAoABQAAAAAAAAAPAAsABQAAAAAAAAAPAAwABQAAAAAAAAAQAAgABQAAAAAAAAAQAAkABQAAAAAAAAAQAAoABQAAAAAAAAAQAAsABQAAAAAAAAAQAAwABQAAAAAAAAARAAgABQAAAAAAAAARAAkABQAAAAAAAAARAAoABQAAAAAAAAARAAsABQAAAAAAAAARAAwABQAAAAAAAAASAAgABQAAAAAAAAASAAkABQAAAAAAAAASAAoABQAAAAAAAAASAAsABQAAAAAAAAASAAwABQAAAAAAAAATAAgABQAAAAAAAAATAAkABQAAAAAAAAATAAoABQAAAAAAAAATAAsABQAAAAAAAAATAAwABQAAAAAAAAAUAAgABQAAAAAAAAAUAAkABQAAAAAAAAAUAAoABQAAAAAAAAAUAAsABQAAAAAAAAAUAAwABQAAAAAAAAAVAAgABQAAAAAAAAAVAAkABQAAAAAAAAAVAAoABQAAAAAAAAAVAAsABQAAAAAAAAAVAAwABQAAAAAAAAAWAAgABQAAAAAAAAAWAAkABQAAAAAAAAAWAAoABQAAAAAAAAAWAAsABQAAAAAAAAAWAAwABQAAAAAAAAAXAAgABQAAAAAAAAAXAAkABQAAAAAAAAAXAAoABQAAAAAAAAAXAAsABQAAAAAAAAAXAAwABQAAAAAAAAAUAAUABQAAAAAAAAAUAAYABQAAAAAAAAAUAAcABQAAAAAAAAAVAAUABQAAAAAAAAAVAAYABQAAAAAAAAAVAAcABQAAAAAAAAAWAAUABQAAAAAAAAAWAAYABQAAAAAAAAAWAAcABQAAAAAAAAAXAAUABQAAAAAAAAAXAAYABQAAAAAAAAAXAAcABQAAAAAAAAAUAPz/BQAAAAAAAAAUAP3/BQAAAAAAAAAUAP7/BQAAAAAAAAAUAP//BQAAAAAAAAAUAAAABQAAAAAAAAAUAAEABQAAAAAAAAAVAPz/BQAAAAAAAAAVAP3/BQAAAAAAAAAVAP7/BQAAAAAAAAAVAP//BQAAAAAAAAAVAAAABQAAAAAAAAAVAAEABQAAAAAAAAAWAPz/BQAAAAAAAAAWAP3/BQAAAAAAAAAWAP7/BQAAAAAAAAAWAP//BQAAAAAAAAAWAAAABQAAAAAAAAAWAAEABQAAAAAAAAAXAPz/BQAAAAAAAAAXAP3/BQAAAAAAAAAXAP7/BQAAAAAAAAAXAP//BQAAAAAAAAAXAAAABQAAAAAAAAAXAAEABQAAAAAAAAACAPz/BQAAAAAAAAACAP3/BQAAAAAAAAACAP7/BQAAAAAAAAADAPz/BQAAAAAAAAADAP3/BQAAAAAAAAADAP7/BQAAAAAAAAAEAPz/BQAAAAAAAAAEAP3/BQAAAAAAAAAEAP7/BQAAAAAAAAAFAPz/BQAAAAAAAAAFAP3/BQAAAAAAAAAFAP7/BQAAAAAAAAAGAPz/BQAAAAAAAAAGAP3/BQAAAAAAAAAGAP7/BQAAAAAAAAAHAPz/BQAAAAAAAAAHAP3/BQAAAAAAAAAHAP7/BQAAAAAAAAAIAPz/BQAAAAAAAAAIAP3/BQAAAAAAAAAIAP7/BQAAAAAAAAAJAPz/BQAAAAAAAAAJAP3/BQAAAAAAAAAJAP7/BQAAAAAAAAAKAPz/BQAAAAAAAAAKAP3/BQAAAAAAAAAKAP7/BQAAAAAAAAALAPz/BQAAAAAAAAALAP3/BQAAAAAAAAALAP7/BQAAAAAAAAAMAPz/BQAAAAAAAAAMAP3/BQAAAAAAAAAMAP7/BQAAAAAAAAANAPz/BQAAAAAAAAANAP3/BQAAAAAAAAANAP7/BQAAAAAAAAAOAPz/BQAAAAAAAAAOAP3/BQAAAAAAAAAOAP7/BQAAAAAAAAAPAPz/BQAAAAAAAAAPAP3/BQAAAAAAAAAPAP7/BQAAAAAAAAAQAPz/BQAAAAAAAAAQAP3/BQAAAAAAAAAQAP7/BQAAAAAAAAARAPz/BQAAAAAAAAARAP3/BQAAAAAAAAARAP7/BQAAAAAAAAASAPz/BQAAAAAAAAASAP3/BQAAAAAAAAASAP7/BQAAAAAAAAATAPz/BQAAAAAAAAATAP3/BQAAAAAAAAATAP7/BQAAAAAAAAACAP//BQAAAAAAAAADAP//BQAAAAAAAAAEAP//BQAAAAAAAAAFAP//BQAAAAAAAAAGAP//BQAAAAAAAAAHAP//BQAAAAAAAAAIAP//BQAAAAAAAAAGAAAABQAAAAAAAAAGAAEABQAAAAAAAAAHAAAABQAAAAAAAAAHAAEABQAAAAAAAAAIAAAABQAAAAAAAAAIAAEABQAAAAAAAAD6//z/BQAAAAAAAAD6//3/BQAAAAAAAAD7//z/BQAAAAAAAAD7//3/BQAAAAAAAAD8//z/BQAAAAAAAAD8//3/BQAAAAAAAAD9//z/BQAAAAAAAAD9//3/BQAAAAAAAAD+//z/BQAAAAAAAAD+//3/BQAAAAAAAAD///z/BQAAAAAAAAD///3/BQAAAAAAAAAAAPz/BQAAAAAAAAAAAP3/BQAAAAAAAAABAPz/BQAAAAAAAAABAP3/BQAAAAAAAAD6//7/BQAAAAAAAAD6////BQAAAAAAAAD6/wAABQAAAAAAAAD6/wEABQAAAAAAAAD6/wIABQAAAAAAAAD6/wMABQAAAAAAAAD6/wQABQAAAAAAAAD6/wUABQAAAAAAAAD6/wYABQAAAAAAAAD6/wcABQAAAAAAAAD6/wgABQAAAAAAAAD6/wkABQAAAAAAAAD6/woABQAAAAAAAAD6/wsABQAAAAAAAAD6/wwABQAAAAAAAAD7//7/BQAAAAAAAAD7////BQAAAAAAAAD7/wAABQAAAAAAAAD7/wEABQAAAAAAAAD7/wIABQAAAAAAAAD7/wMABQAAAAAAAAD7/wQABQAAAAAAAAD7/wUABQAAAAAAAAD7/wYABQAAAAAAAAD7/wcABQAAAAAAAAD7/wgABQAAAAAAAAD7/wkABQAAAAAAAAD7/woABQAAAAAAAAD7/wsABQAAAAAAAAD7/wwABQAAAAAAAAD8/wgABQAAAAAAAAD8/wkABQAAAAAAAAD8/woABQAAAAAAAAD8/wsABQAAAAAAAAD8/wwABQAAAAAAAAD9/wgABQAAAAAAAAD9/wkABQAAAAAAAAD9/woABQAAAAAAAAD9/wsABQAAAAAAAAD9/wwABQAAAAAAAAD+/wgABQAAAAAAAAD+/wkABQAAAAAAAAD+/woABQAAAAAAAAD+/wsABQAAAAAAAAD+/wwABQAAAAAAAAD8//7/BQAAAAAAAAD8////BQAAAAAAAAD9//7/BQAAAAAAAAD9////BQAAAAAAAAD+//7/BQAAAAAAAAD+////BQAAAAAAAAD///7/BQAAAAAAAAD/////BQAAAAAAAAAGAAUABQAAAAAAAAAGAAYABQAAAAAAAAAGAAcABQAAAAAAAAAHAAUABQAAAAAAAAAHAAYABQAAAAAAAAAHAAcABQAAAAAAAAAIAAUABQAAAAAAAAAIAAYABQAAAAAAAAAIAAcABQAAAAAAAAD//wgABQAAAAAAAAD//wkABQAAAAAAAAD//woABQAAAAAAAAAAAAoABQAAAAAAAAABAAoABQAAAAAAAAACAAoABQAAAAAAAAACAAkABQAAAAAAAAACAAgABQAAAAAAAAAAAP//BQAAAAAAAAABAP//BQAAAAAAAAD//wsABQAAAAAAAAAAAAsABQAAAAAAAAABAAsABQAAAAAAAAACAAsABQAAAAAAAAACAAwABQAAAAAAAAABAAwABQAAAAAAAAAAAAwABQAAAAAAAAD//wwABQAAAAAAAAD5/wwABQAAAAAAAAD5/wsABQAAAAAAAAD5/woABQAAAAAAAAD5/wkABQAAAAAAAAD5/wgABQAAAAAAAAD5/wcABQAAAAAAAAD5/wYABQAAAAAAAAD5/wUABQAAAAAAAAD5/wQABQAAAAAAAAD5/wMABQAAAAAAAAD5/wIABQAAAAAAAAD5/wEABQAAAAAAAAD5/wAABQAAAAAAAAD5////BQAAAAAAAAD5//7/BQAAAAAAAAD5//3/BQAAAAAAAAD5//z/BQAAAAAAAAD4//z/BQAAAAAAAAD4//3/BQAAAAAAAAD4//7/BQAAAAAAAAD4////BQAAAAAAAAD4/wAABQAAAAAAAAD4/wEABQAAAAAAAAD4/wIABQAAAAAAAAD4/wMABQAAAAAAAAD4/wQABQAAAAAAAAD4/wUABQAAAAAAAAD4/wYABQAAAAAAAAD4/wcABQAAAAAAAAD4/wgABQAAAAAAAAD4/wkABQAAAAAAAAD4/woABQAAAAAAAAD4/wsABQAAAAAAAAD4/wwABQAAAAAAAAAAAAkABQAAAAAAAAABAAkABQAAAAAAAAA=")
+tile_set = ExtResource("2_rkqbf")
+script = ExtResource("20_mfwyi")
+yOffset = 4.0
+
+[node name="FakePlayerVisionSource" parent="_dev" instance=ExtResource("4_e8vvw")]
+
+[node name="SimpleAmbient" type="MeshInstance3D" parent="_dev"]
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0)
+top_level = true
+extra_cull_margin = 16384.0
+mesh = ExtResource("8_on47e")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_lv03n")
+
+[node name="DistanceFog" type="MeshInstance3D" parent="_dev"]
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0)
+top_level = true
+extra_cull_margin = 16384.0
+mesh = SubResource("ArrayMesh_w4qx5")
+surface_material_override/0 = SubResource("ShaderMaterial_5m5mb")
+
+[node name="Entrance" parent="." instance=ExtResource("25_3cc7l")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 16)
+script = ExtResource("26_ye1kj")
+targetLevel = "Forest_1"
+
+[node name="Area3D" type="Area3D" parent="Entrance"]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -3, 2, -1)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Entrance/Area3D"]
+shape = SubResource("BoxShape3D_464kw")
+
+[connection signal="area_entered" from="Entrance/Area3D" to="Entrance" method="_on_area_3d_area_entered"]

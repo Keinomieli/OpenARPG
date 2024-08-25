@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbi1qcw2o25ly"]
+
+[ext_resource type="ArrayMesh" uid="uid://b330wd5l6hm8p" path="res://Assets/Levels/Shapes/Organic/Basic_Shapes_Slope_Organic.tres" id="1_u7mwa"]
+[ext_resource type="Material" uid="uid://dbeqcoq4pdd0g" path="res://Assets/Tilesets/Forest_1/Forest_1_Mat_Cliff.tres" id="2_lvjkh"]
+
+[node name="Slope" type="MeshInstance3D"]
+mesh = ExtResource("1_u7mwa")
+surface_material_override/0 = ExtResource("2_lvjkh")

@@ -1,0 +1,63 @@
+[gd_resource type="TileSet" load_steps=8 format=3 uid="uid://srdn5ww2qlyv"]
+
+[ext_resource type="PackedScene" uid="uid://cpaco5u6n1urr" path="res://Assets/Tilesets/Dungeon_1/Dungeon_1_Floor.tscn" id="1_njsd2"]
+[ext_resource type="PackedScene" uid="uid://blrxt8w5tv8yj" path="res://Assets/Tilesets/Dungeon_1/Dungeon_1_Floor_Alt.tscn" id="2_kdeh0"]
+[ext_resource type="PackedScene" uid="uid://cerlj5lxkjae5" path="res://Assets/Tilesets/Dungeon_1/Dungeon_1_Slope.tscn" id="3_23q2x"]
+[ext_resource type="PackedScene" uid="uid://dh5tmfulnsius" path="res://Assets/Tilesets/Dungeon_1/Dungeon_1_Outer_Corner.tscn" id="4_vode1"]
+[ext_resource type="PackedScene" uid="uid://b5lkeoboicufs" path="res://Assets/Tilesets/Dungeon_1/Dungeon_1_Inner_Corner.tscn" id="5_iddbc"]
+[ext_resource type="Texture2D" uid="uid://b23axiyejlao6" path="res://Assets/Levels/level_design_set.png" id="6_0m01v"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_omg2k"]
+texture = ExtResource("6_0m01v")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/custom_data_0 = ExtResource("1_njsd2")
+0:0/0/custom_data_3 = true
+2:0/0 = 0
+2:0/0/custom_data_0 = ExtResource("3_23q2x")
+3:0/0 = 0
+3:0/0/custom_data_0 = ExtResource("4_vode1")
+4:0/0 = 0
+4:0/0/custom_data_0 = ExtResource("5_iddbc")
+2:1/0 = 0
+2:1/0/custom_data_0 = ExtResource("3_23q2x")
+2:1/0/custom_data_1 = 270.0
+2:2/0 = 0
+2:2/0/custom_data_0 = ExtResource("3_23q2x")
+2:2/0/custom_data_1 = 180.0
+2:3/0 = 0
+2:3/0/custom_data_0 = ExtResource("3_23q2x")
+2:3/0/custom_data_1 = 90.0
+3:3/0 = 0
+3:3/0/custom_data_0 = ExtResource("4_vode1")
+3:3/0/custom_data_1 = 90.0
+3:2/0 = 0
+3:2/0/custom_data_0 = ExtResource("4_vode1")
+3:2/0/custom_data_1 = 180.0
+3:1/0 = 0
+3:1/0/custom_data_0 = ExtResource("4_vode1")
+3:1/0/custom_data_1 = 270.0
+4:1/0 = 0
+4:1/0/custom_data_0 = ExtResource("5_iddbc")
+4:1/0/custom_data_1 = 270.0
+4:2/0 = 0
+4:2/0/custom_data_0 = ExtResource("5_iddbc")
+4:2/0/custom_data_1 = 180.0
+4:3/0 = 0
+4:3/0/custom_data_0 = ExtResource("5_iddbc")
+4:3/0/custom_data_1 = 90.0
+0:1/0 = 0
+0:1/0/custom_data_0 = ExtResource("2_kdeh0")
+0:1/0/custom_data_3 = true
+
+[resource]
+tile_size = Vector2i(32, 32)
+custom_data_layer_0/name = "MeshObject"
+custom_data_layer_0/type = 24
+custom_data_layer_1/name = "Rotation"
+custom_data_layer_1/type = 3
+custom_data_layer_2/name = "Translation"
+custom_data_layer_2/type = 9
+custom_data_layer_3/name = "RandomRotation"
+custom_data_layer_3/type = 1
+sources/5 = SubResource("TileSetAtlasSource_omg2k")

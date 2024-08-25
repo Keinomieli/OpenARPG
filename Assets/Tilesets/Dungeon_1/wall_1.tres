@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://ra5jayoaokj"]
+
+[ext_resource type="Texture2D" uid="uid://c8w253rh1eaqk" path="res://Assets/Tilesets/Dungeon_1/wall_1-1.png" id="2_23atr"]
+[ext_resource type="Texture2D" uid="uid://j14r50q1bwbr" path="res://Assets/Tilesets/Dungeon_1/wall_1-1n.png" id="3_1mcsn"]
+
+[resource]
+albedo_texture = ExtResource("2_23atr")
+normal_enabled = true
+normal_texture = ExtResource("3_1mcsn")

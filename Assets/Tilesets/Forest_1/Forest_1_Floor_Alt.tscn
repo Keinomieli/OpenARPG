@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7lbe3v8id2do"]
+
+[ext_resource type="ArrayMesh" uid="uid://82jv84gwjiel" path="res://Assets/Levels/Shapes/Basic/Basic_Shapes_Floor.tres" id="1_uav6l"]
+[ext_resource type="Texture2D" uid="uid://d187fbqmc7tmc" path="res://Assets/Tilesets/Forest_1/cliff_vegetation.png" id="2_hyssf"]
+[ext_resource type="Texture2D" uid="uid://dppqshfxuemci" path="res://Assets/Tilesets/Dungeon_1/floor_2-1n.png" id="3_70lex"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mttg8"]
+albedo_color = Color(0.7, 0.7, 0.665, 1)
+albedo_texture = ExtResource("2_hyssf")
+metallic_specular = 0.0
+normal_texture = ExtResource("3_70lex")
+
+[node name="Floor" type="MeshInstance3D"]
+mesh = ExtResource("1_uav6l")
+surface_material_override/0 = SubResource("StandardMaterial3D_mttg8")

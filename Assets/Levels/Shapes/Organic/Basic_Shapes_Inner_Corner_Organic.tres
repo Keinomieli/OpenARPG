@@ -1,0 +1,17 @@
+[gd_resource type="ArrayMesh" format=4 uid="uid://dl1kbjlj4267k"]
+
+[resource]
+resource_name = "inner_Slope_Wall_010"
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 4, 2),
+"attribute_data": PackedByteArray("zAzMDDLzzAz//8wMAAD///7/////f8wM/v//f/9//3////8//3//P/7//78AAA8A//8PAP//DwD/fw8A/z//P/+//z9DPv+//b//vwAAzAwAAP9/AAAPAAAA/z8AAP+//3/MDP9//z//fw8A/3//fwAADwD//w8A//8PAP9/DwD/P/8//7//PwAADwD/fw8A"),
+"format": 34896613399,
+"index_count": 84,
+"index_data": PackedByteArray("BgAJAAgABgAHAAkACAAFAAIACAAJAAUACgAHAAYACgASAAcABQANAAIABQAOAA0AAAAOAAUAAAALAA4ADwAJAAcAEgAKAAQADwAFAAkADwAAAAUABwAXABQABwARABcAAwAXABEAAQAaAAwAAQAYABoAEAAYAAEAEAAZABgAGQAUABYAGQAHABQAGQAQAAcAGAAVABoAGAATABUAGAAWABMAGAAZABYA"),
+"lods": [0.544328, PackedByteArray("BgAgAAgACAAgAAIAIAAeAAIAIAAfAB4AIAAcAB8ABgAbACAACgAbAAYAEgAKAAQACgASABsAGwARABcAAwAXABEAGwAXABQAFgAbABQAFgAhABsAFgATABUAIQAWACMAFgAiACMAIQAjAB0A")],
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("/x/L/P8fTrT/H8v8/x8Gxv//y/z/Hzih//8AAP//wbD//wAA///WqP9/y/z/Hzih////fzJzbpL/f/9//39vrv///7//P+GN/3//v/8/Ro7///8/mLn9kwAA//8AAAy8AAD//wAAlND/////AAD0t/9///8AAPS3/z//v/8/HKX/P/+//z9Wq/+//z+YuXqv/7//P5i5/ab/H8v8//9txjJz/3///0+/AAD///7/2dD/P/+///9BwJi5/z///+q+/x/L/P9/bcb/P/+//3/BwAAA////f9nQ/3//f/9/aa8AAP//AADYqwAA//8AAGbE/////wAA4J//f///AADEpP8//7//P9ag/z//v/8/trMAAP///v9lxQAA////f4LD1N0sbLnQMSL///9/fMY7G7u+V1L///9/vvG8bGHE0Bm39hR4x/sPe0P4Ynfj86R57dPhJ////3////9/bLPLRWm/YRSQx+Aanr50UVG7qR3Rqb0Vgc/AJ/6gThCirFgXUbupHZqh5hCBz8AnssFbGOXg72guyx0h8P3xfSfzKHP6wIFV18ArGWa4Mxz1uGYc")
+}]
+blend_shape_mode = 0

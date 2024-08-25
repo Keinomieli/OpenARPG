@@ -1,0 +1,118 @@
+[gd_scene load_steps=18 format=3 uid="uid://dvkkdqtuai3um"]
+
+[ext_resource type="Shader" uid="uid://b21xo58n4vsyy" path="res://Shaders/Billboards/ToonFire.tres" id="1_mh3wp"]
+[ext_resource type="Texture2D" uid="uid://18r8rmj0kfi6" path="res://Assets/Billboards/fire_opacity.png" id="2_p8i3s"]
+[ext_resource type="Shader" path="res://Shaders/Twinkle/Twinkle-point.gdshader" id="3_smsmo"]
+
+[sub_resource type="Gradient" id="Gradient_7s1bx"]
+offsets = PackedFloat32Array(0, 0.0884615, 0.253846, 0.653846, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.7, 0.116667, 0, 1, 0.7, 0.525, 0, 1, 0.6, 0.866667, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vjr2u"]
+gradient = SubResource("Gradient_7s1bx")
+width = 16
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_46k3t"]
+render_priority = 0
+shader = ExtResource("1_mh3wp")
+shader_parameter/BooleanParameter = false
+shader_parameter/Modulate = Color(1, 0.85, 0.7, 1)
+shader_parameter/Voronoi_Speed_A = Vector2(0, 0.6)
+shader_parameter/Voronoi_Scale_A = 0.9
+shader_parameter/Voronoi_Angle_A = 10.0
+shader_parameter/Voronoi_Density_A = 3.0
+shader_parameter/Voronoi_Speed_B = Vector2(0, 0.8)
+shader_parameter/Voronoi_Scale_B = 0.6
+shader_parameter/Voronoi_Angle_B = 3.0
+shader_parameter/Voronoi_Density_B = 6.0
+shader_parameter/Shape_Texture = ExtResource("2_p8i3s")
+shader_parameter/Color_Gradient = SubResource("GradientTexture1D_vjr2u")
+
+[sub_resource type="QuadMesh" id="QuadMesh_2bfmo"]
+material = SubResource("ShaderMaterial_46k3t")
+size = Vector2(1, 1.5)
+center_offset = Vector3(0, 0.75, 0)
+
+[sub_resource type="Curve" id="Curve_l1jfb"]
+bake_resolution = 32
+_data = [Vector2(0, 0), 0.0, 5.68693, 0, 1, Vector2(0.0526316, 0.299312), 0.0, 0.0, 0, 0, Vector2(0.248538, 0.299312), 0.0, 0.0, 0, 0, Vector2(0.400585, 0.754014), 0.0, 0.0, 0, 0, Vector2(0.745614, 0.754014), 0.0, 0.0, 0, 0, Vector2(0.804094, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 1, 0]
+point_count = 7
+
+[sub_resource type="CurveTexture" id="CurveTexture_772mk"]
+width = 32
+texture_mode = 1
+curve = SubResource("Curve_l1jfb")
+
+[sub_resource type="Curve" id="Curve_4jl60"]
+bake_resolution = 32
+_data = [Vector2(0, 0), 0.0, 6.39779, 0, 1, Vector2(0.0467836, 0.299312), 0.0, 0.0, 0, 0, Vector2(0.204678, 0.299312), 0.0, 0.0, 0, 0, Vector2(0.502924, 0.597477), 0.0, 0.0, 0, 0, Vector2(0.599415, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 1, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_c8nxh"]
+width = 32
+texture_mode = 1
+curve = SubResource("Curve_4jl60")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wx8ce"]
+render_priority = 0
+shader = ExtResource("3_smsmo")
+shader_parameter/intensity = 5.0
+shader_parameter/minDist = 0.0
+shader_parameter/maxDist = 8.0
+shader_parameter/distFalloff = 4.0
+shader_parameter/color = Color(1, 0.416667, 0, 1)
+shader_parameter/normalScale = 2.0
+shader_parameter/normalNegationRangeMin = 0.0
+shader_parameter/normalNegationRangeMax = 0.6
+shader_parameter/attenuation_curve = SubResource("CurveTexture_772mk")
+shader_parameter/lambert_curve = SubResource("CurveTexture_c8nxh")
+
+[sub_resource type="BoxMesh" id="BoxMesh_xbxqb"]
+material = SubResource("ShaderMaterial_wx8ce")
+flip_faces = true
+size = Vector3(16, 16, 16)
+
+[sub_resource type="Gradient" id="Gradient_6p048"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hrqck"]
+gradient = SubResource("Gradient_6p048")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qaik8"]
+render_priority = 0
+shader = ExtResource("1_mh3wp")
+shader_parameter/BooleanParameter = true
+shader_parameter/Modulate = Color(1, 0.85, 0.7, 1)
+shader_parameter/Voronoi_Speed_A = Vector2(0, 0.6)
+shader_parameter/Voronoi_Scale_A = 0.9
+shader_parameter/Voronoi_Angle_A = 10.0
+shader_parameter/Voronoi_Density_A = 3.0
+shader_parameter/Voronoi_Speed_B = Vector2(0, 0.8)
+shader_parameter/Voronoi_Scale_B = 0.6
+shader_parameter/Voronoi_Angle_B = 3.0
+shader_parameter/Voronoi_Density_B = 6.0
+shader_parameter/Shape_Texture = SubResource("GradientTexture2D_hrqck")
+shader_parameter/Color_Gradient = SubResource("GradientTexture1D_vjr2u")
+
+[sub_resource type="QuadMesh" id="QuadMesh_0bpye"]
+material = SubResource("ShaderMaterial_qaik8")
+size = Vector2(0.4, 0.4)
+
+[node name="ToonFire" type="MeshInstance3D"]
+mesh = SubResource("QuadMesh_2bfmo")
+skeleton = NodePath("../..")
+
+[node name="Twinkle_Point" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_xbxqb")
+skeleton = NodePath("../../..")
+
+[node name="ToonFire2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("QuadMesh_0bpye")
+skeleton = NodePath("../../..")

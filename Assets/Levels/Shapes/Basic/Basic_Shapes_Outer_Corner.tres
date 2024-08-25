@@ -1,0 +1,16 @@
+[gd_resource type="ArrayMesh" format=4 uid="uid://ckvwfbs3ytavj"]
+
+[resource]
+resource_name = "Basic_Shapes_Slope_Outer_Corner"
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 4, 2),
+"attribute_data": PackedByteArray("AAD///////8AAP//AAAAAP//AAD/////"),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAADAAEABAAFAAIA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("AAAAAP//45L//wAA///jkv//AAD//ybCAAD//wAA45IAAP//AAAmwv//AAAAACbC////f////38MqYYU////fwyphhQMqYYU")
+}]
+blend_shape_mode = 0

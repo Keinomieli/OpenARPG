@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5lkeoboicufs"]
+
+[ext_resource type="ArrayMesh" uid="uid://cvli2g44gaih3" path="res://Assets/Levels/Shapes/Basic/Basic_Shapes_Inner_Corner.tres" id="1_lsu2v"]
+[ext_resource type="Texture2D" uid="uid://c8w253rh1eaqk" path="res://Assets/Tilesets/Dungeon_1/wall_1-1.png" id="2_wonm2"]
+[ext_resource type="Texture2D" uid="uid://j14r50q1bwbr" path="res://Assets/Tilesets/Dungeon_1/wall_1-1n.png" id="3_2fxpv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e7e7x"]
+albedo_texture = ExtResource("2_wonm2")
+normal_enabled = true
+normal_texture = ExtResource("3_2fxpv")
+
+[node name="Slope_Inner_Corner" type="MeshInstance3D"]
+mesh = ExtResource("1_lsu2v")
+surface_material_override/0 = SubResource("StandardMaterial3D_e7e7x")

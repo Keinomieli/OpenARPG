@@ -1,0 +1,16 @@
+[gd_resource type="ArrayMesh" format=4 uid="uid://d03a2gtn7m2ae"]
+
+[resource]
+resource_name = "Slope_Organic_Floor_001"
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
+"attribute_data": PackedByteArray("AAD///////8AAAAA//8AAP9/////fwAAAAD/f////3//f/9/"),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("CAADAAcACAAFAAMABgAFAAgABgACAAUAAAAIAAQAAAAGAAgABAAHAAEABAAIAAcA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 9,
+"vertex_data": PackedByteArray("AAAAAP///////wAA/////wAAAAAAAP////8AAAAA////fwAA//////9/AAAAAP//AAAAAP9//////wAA/3////9/AAD/f////3//v/9//7//f/+//3//v/9//7//f/+//3//v/9//7//f/+/")
+}]
+blend_shape_mode = 0

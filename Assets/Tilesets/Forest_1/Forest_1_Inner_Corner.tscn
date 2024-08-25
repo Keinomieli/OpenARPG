@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://blj7bifjdl7is"]
+
+[ext_resource type="ArrayMesh" uid="uid://dl1kbjlj4267k" path="res://Assets/Levels/Shapes/Organic/Basic_Shapes_Inner_Corner_Organic.tres" id="1_6iarn"]
+[ext_resource type="Material" uid="uid://dbeqcoq4pdd0g" path="res://Assets/Tilesets/Forest_1/Forest_1_Mat_Cliff.tres" id="2_un6hc"]
+
+[node name="Slope_Inner_Corner" type="MeshInstance3D"]
+mesh = ExtResource("1_6iarn")
+surface_material_override/0 = ExtResource("2_un6hc")

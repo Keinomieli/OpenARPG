@@ -1,0 +1,16 @@
+[gd_resource type="ArrayMesh" format=4 uid="uid://kv78rkortjhq"]
+
+[resource]
+resource_name = "Slope_Organic_Slope_Wall_007"
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 4, 2),
+"attribute_data": PackedByteArray("/////wYA+P//////GOv4/////////8wM//////7/+P///////3/4///////+//9//////8pv/3///////3//f/////////8///////7//7///////3//v/////8VQP+//////3Kt/7//////ajn/P//////ywP8//////1QAzAz/////BgD0//////+SdfX//////wYA/3//////nQD/P/////8NAP+//////411/7//////ghjMDP////9/58wM/////wAAAAD///////8AAA=="),
+"format": 34896613407,
+"index_count": 72,
+"index_data": PackedByteArray("BAAJAAMABAAKAAkACgAFAAkACgAHAAUAAAAKAAQAAAALAAoABwAKAAsABwAIAAUABwAOAAgAFQABABEAFQAMAAEAFAARABAAFAAVABEAEwAGABIAEwANAAYAFwAIAA4AFwACAAgAEgAVABQAEgAGABUADAAVAAYAFgAPABgADQAPABYADQATAA8AGQACABcA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 26,
+"vertex_data": PackedByteArray("//8AAP//OPf//wAA//849/8fy/wAAPb7//8AAAAAVf7//wAA/39t/jJz/38AAPT+mXn/f5l5gPaZef9/mXmA9v8//78AAEL/mLn/PwAAef6Yuf8//3+c/tG8/z/CvCP30bz/P8K8I/fbPf+/3j6G89s9/7/ePobzAADL/P8fdd8AAAAA//+BzP9/AAD//9LLAAD/fzJzfMgAAP+//z9TxwAA/z+YuXXL/3//P5i5jsqZGcv8mRl2+ZkZy/yZGXb5AAD//wAAlf8AAP//AACV/7udPpm7nT6ZCyZNImUblC4jGwIvlBhtMaCeb5egnm+XWhOUMwAbOi+jGs8v3J0AmdydAJl2ocGQdqHBkHGSYZ5kkZmWJZGglv6PTpXJj6KPApGklqmQsJZMmmyfTJpsn2yHTbhsh024")
+}]
+blend_shape_mode = 0

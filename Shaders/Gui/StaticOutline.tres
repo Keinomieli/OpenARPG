@@ -1,0 +1,103 @@
+[gd_resource type="VisualShader" load_steps=4 format=3 uid="uid://b6ir5k3whrr3j"]
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_q6bmr"]
+linked_parent_graph_frame = 58
+size = Vector2(560, 420)
+expression = "vec2 right = UV + vec2(TEXTURE_PIXEL_SIZE.x,0.0);
+vec2 left = UV - vec2(TEXTURE_PIXEL_SIZE.x,0.0);
+vec2 up = UV - vec2(0.0,TEXTURE_PIXEL_SIZE.y);
+vec2 down = UV + vec2(0.0,TEXTURE_PIXEL_SIZE.y);
+
+float l_a = texture(TEXTURE,left).a;
+float r_a = texture(TEXTURE,right).a;
+float u_a = texture(TEXTURE,up).a;
+float d_a = texture(TEXTURE,down).a;
+vec4 tex = texture(TEXTURE,UV);
+
+float outline_amount = max(max(l_a, r_a),max(u_a,d_a));
+outline_amount *= 1.0 - tex.a;
+color = mix(tex.rgb,outline_color.rgb,outline_amount);
+alpha = max(tex.a, outline_amount * outline_color.a);"
+
+[sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_4uyh6"]
+size = Vector2(640, 500)
+title = "Outline"
+attached_nodes = PackedInt32Array(10)
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_knm3k"]
+parameter_name = "OutlineColor"
+default_value_enabled = true
+default_value = Color(0, 0, 0, 1)
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform vec4 OutlineColor : source_color = vec4(0.000000, 0.000000, 0.000000, 1.000000);
+
+
+
+void fragment() {
+// ColorParameter:59
+	vec4 n_out59p0 = OutlineColor;
+
+
+	vec3 n_out10p0;
+	float n_out10p1;
+// Expression:10
+	n_out10p0 = vec3(0.0, 0.0, 0.0);
+	n_out10p1 = 0.0;
+	{
+		vec2 right = UV + vec2(TEXTURE_PIXEL_SIZE.x,0.0);
+		vec2 left = UV - vec2(TEXTURE_PIXEL_SIZE.x,0.0);
+		vec2 up = UV - vec2(0.0,TEXTURE_PIXEL_SIZE.y);
+		vec2 down = UV + vec2(0.0,TEXTURE_PIXEL_SIZE.y);
+		
+		float l_a = texture(TEXTURE,left).a;
+		float r_a = texture(TEXTURE,right).a;
+		float u_a = texture(TEXTURE,up).a;
+		float d_a = texture(TEXTURE,down).a;
+		vec4 tex = texture(TEXTURE,UV);
+		
+		float outline_amount = max(max(l_a, r_a),max(u_a,d_a));
+		outline_amount *= 1.0 - tex.a;
+		n_out10p0 = mix(tex.rgb,n_out59p0.rgb,outline_amount);
+		n_out10p1 = max(tex.a, outline_amount * n_out59p0.a);
+	}
+
+
+// Output:0
+	COLOR.rgb = n_out10p0;
+	COLOR.a = n_out10p1;
+
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(660, -140)
+nodes/fragment/10/node = SubResource("VisualShaderNodeExpression_q6bmr")
+nodes/fragment/10/position = Vector2(0, -180)
+nodes/fragment/10/size = Vector2(560, 420)
+nodes/fragment/10/input_ports = "0,5,outline_color;"
+nodes/fragment/10/output_ports = "0,4,color;1,0,alpha;"
+nodes/fragment/10/expression = "vec2 right = UV + vec2(TEXTURE_PIXEL_SIZE.x,0.0);
+vec2 left = UV - vec2(TEXTURE_PIXEL_SIZE.x,0.0);
+vec2 up = UV - vec2(0.0,TEXTURE_PIXEL_SIZE.y);
+vec2 down = UV + vec2(0.0,TEXTURE_PIXEL_SIZE.y);
+
+float l_a = texture(TEXTURE,left).a;
+float r_a = texture(TEXTURE,right).a;
+float u_a = texture(TEXTURE,up).a;
+float d_a = texture(TEXTURE,down).a;
+vec4 tex = texture(TEXTURE,UV);
+
+float outline_amount = max(max(l_a, r_a),max(u_a,d_a));
+outline_amount *= 1.0 - tex.a;
+color = mix(tex.rgb,outline_color.rgb,outline_amount);
+alpha = max(tex.a, outline_amount * outline_color.a);"
+nodes/fragment/58/node = SubResource("VisualShaderNodeFrame_4uyh6")
+nodes/fragment/58/position = Vector2(-40, -220)
+nodes/fragment/59/node = SubResource("VisualShaderNodeColorParameter_knm3k")
+nodes/fragment/59/position = Vector2(-340, -240)
+nodes/fragment/connections = PackedInt32Array(59, 0, 10, 0, 10, 0, 0, 0, 10, 1, 0, 1)

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bntxtvwus3mje"]
+
+[ext_resource type="Script" path="res://Scripts/Player/SpectatorCamera.cs" id="1_7uy7i"]
+
+[node name="SpectatorCamera" type="Camera3D"]
+script = ExtResource("1_7uy7i")
+toggleKey = 4194306
+speed = 20.0

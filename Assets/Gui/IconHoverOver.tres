@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://3557tj4bglba"]
+
+[ext_resource type="Shader" uid="uid://b6ir5k3whrr3j" path="res://Shaders/Gui/StaticOutline.tres" id="1_x3xwo"]
+
+[resource]
+shader = ExtResource("1_x3xwo")
+shader_parameter/OutlineColor = Color(0, 1, 0, 1)

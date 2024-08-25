@@ -1,0 +1,311 @@
+[gd_scene load_steps=23 format=3 uid="uid://y6hj5vqsm8hc"]
+
+[ext_resource type="Script" path="res://Scripts/Player/MainUI.cs" id="1_gb0kq"]
+[ext_resource type="Texture2D" uid="uid://h6533k836yki" path="res://Assets/Gui/corner_skill_panel.png" id="6_dhsv1"]
+[ext_resource type="Texture2D" uid="uid://dkf5tsy6jhr5k" path="res://Assets/Gui/mana_orb.png" id="7_pe3vc"]
+[ext_resource type="Texture2D" uid="uid://cmtntbt6bjgcw" path="res://Assets/Gui/inventory.png" id="7_xr4tn"]
+[ext_resource type="Texture2D" uid="uid://0naodvhhy61j" path="res://Assets/Gui/orb_holder.png" id="7_y41rs"]
+[ext_resource type="Script" path="res://Scripts/Gui/Inventory.cs" id="8_3dv3p"]
+[ext_resource type="Texture2D" uid="uid://c5jy5u28kpl6l" path="res://Assets/Gui/health_orb.png" id="8_8cosn"]
+[ext_resource type="Material" uid="uid://barj08dyhvvrk" path="res://Assets/Gui/IconIdle.tres" id="8_keyo2"]
+[ext_resource type="Texture2D" uid="uid://86p1hq4mjnf8" path="res://Assets/Gui/backpack.png" id="9_jbikl"]
+[ext_resource type="Script" path="res://Scripts/Gui/InventoryButton.cs" id="10_7xbbd"]
+[ext_resource type="PackedScene" uid="uid://crj8iq4r5ekx4" path="res://Assets/System/DevConsole.tscn" id="10_erq1l"]
+[ext_resource type="Texture2D" uid="uid://dxcswlmgifdab" path="res://Assets/Items/shield_1_2.png" id="10_uwvtc"]
+[ext_resource type="Material" uid="uid://bb1bp70bhoxe8" path="res://Assets/Items/sword_gui_material.tres" id="11_6v4gf"]
+[ext_resource type="Script" path="res://Scripts/Tools/ScreenshotTaker.cs" id="11_j6c2b"]
+[ext_resource type="Texture2D" uid="uid://bcpjronyffpbp" path="res://Assets/Items/sword_1_1.png" id="11_mtrbl"]
+[ext_resource type="Material" uid="uid://3557tj4bglba" path="res://Assets/Gui/IconHoverOver.tres" id="11_tisra"]
+[ext_resource type="Script" path="res://Scripts/Tools/StateMachineEditor.cs" id="12_hfcl4"]
+[ext_resource type="Script" path="res://Scripts/Tools/EditorOnly.gd" id="14_jnjav"]
+[ext_resource type="PackedScene" uid="uid://dtvyqw8jy5t7k" path="res://Scripts/Tools/EditorShaderElapsedTime.tscn" id="15_u7n38"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_turrm"]
+
+[sub_resource type="SystemFont" id="SystemFont_hbgp5"]
+subpixel_positioning = 0
+
+[sub_resource type="FontVariation" id="FontVariation_mg6kb"]
+base_font = SubResource("SystemFont_hbgp5")
+variation_embolden = 0.5
+spacing_glyph = 1
+
+[node name="GUI" type="Node"]
+script = ExtResource("1_gb0kq")
+
+[node name="System" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="DevConsole" parent="System" instance=ExtResource("10_erq1l")]
+visible = false
+
+[node name="GraphEdit" type="GraphEdit" parent="System"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+right_disconnects = true
+script = ExtResource("12_hfcl4")
+
+[node name="GraphNode" type="GraphNode" parent="System/GraphEdit"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 217.0
+offset_right = 537.0
+offset_bottom = 427.0
+mouse_filter = 1
+position_offset = Vector2(200, 217)
+title = "World"
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 1
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+
+[node name="Label" type="Label" parent="System/GraphEdit/GraphNode"]
+layout_mode = 2
+text = "Connect me"
+
+[node name="GraphNode2" type="GraphNode" parent="System/GraphEdit"]
+layout_mode = 0
+offset_left = 481.0
+offset_top = 457.0
+offset_right = 818.0
+offset_bottom = 667.0
+mouse_filter = 1
+position_offset = Vector2(481, 457)
+title = "Hello"
+slot/0/left_enabled = true
+slot/0/left_type = 1
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+
+[node name="Label2" type="Label" parent="System/GraphEdit/GraphNode2"]
+layout_mode = 2
+text = "To correct port"
+
+[node name="CodeEdit" type="CodeEdit" parent="System"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 58.0
+offset_top = 104.0
+offset_right = -75.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Lorem
+Ipsum
+Parabellum"
+gutters_draw_line_numbers = true
+
+[node name="Game" type="CanvasLayer" parent="."]
+
+[node name="HealthOrbHolder" type="TextureRect" parent="Game"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -145.0
+offset_right = 256.0
+grow_vertical = 0
+texture = ExtResource("7_y41rs")
+
+[node name="HealthOrb" type="TextureRect" parent="Game/HealthOrbHolder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -183.5
+offset_right = 128.0
+offset_bottom = 72.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("8_8cosn")
+
+[node name="HealthSkillPanel" type="TextureRect" parent="Game/HealthOrbHolder"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 256.0
+offset_top = -110.0
+offset_right = 512.0
+grow_vertical = 0
+size_flags_vertical = 8
+texture = ExtResource("6_dhsv1")
+
+[node name="ManaOrbHolder" type="TextureRect" parent="Game"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -145.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("7_y41rs")
+
+[node name="ManaOrb" type="TextureRect" parent="Game/ManaOrbHolder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -183.5
+offset_right = 128.0
+offset_bottom = 72.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_pe3vc")
+
+[node name="ManaSkillPanel" type="TextureRect" parent="Game/ManaOrbHolder"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -512.0
+offset_top = -110.0
+offset_right = -256.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 8
+texture = ExtResource("6_dhsv1")
+
+[node name="BackpackIcon" type="TextureRect" parent="Game/ManaOrbHolder/ManaSkillPanel"]
+material = ExtResource("8_keyo2")
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_bottom = 64.0
+grow_horizontal = 0
+texture = ExtResource("9_jbikl")
+script = ExtResource("10_7xbbd")
+idleMaterial = ExtResource("8_keyo2")
+highlightMaterial = ExtResource("11_tisra")
+
+[node name="MiniMap" type="TextureRect" parent="Game"]
+modulate = Color(0, 0, 0, 0.501961)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -276.0
+offset_top = 60.0
+offset_right = -20.0
+offset_bottom = 316.0
+grow_horizontal = 0
+texture = SubResource("CanvasTexture_turrm")
+
+[node name="MapName" type="RichTextLabel" parent="Game"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -276.0
+offset_top = 13.0
+offset_right = -20.0
+offset_bottom = 51.0
+grow_horizontal = 0
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_mg6kb")
+bbcode_enabled = true
+text = "[font_size=26][color=Orange]Shadow Wood"
+
+[node name="Inventory" type="TextureRect" parent="Game"]
+visible = false
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -726.0
+offset_top = -500.0
+offset_right = -373.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("7_xr4tn")
+script = ExtResource("8_3dv3p")
+toggleInputAction = "Inventory"
+
+[node name="Shield" type="TextureRect" parent="Game/Inventory"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -175.9
+offset_top = 60.5
+offset_right = -47.9
+offset_bottom = 188.5
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("10_uwvtc")
+
+[node name="Sword" type="TextureRect" parent="Game/Inventory"]
+material = ExtResource("11_6v4gf")
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -257.3
+offset_top = 65.81
+offset_right = -129.3
+offset_bottom = 193.81
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("11_mtrbl")
+
+[node name="Post-Process" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Post-Process"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScreenshotTaker" type="Node" parent="."]
+script = ExtResource("11_j6c2b")
+key = 4194343
+
+[node name="EditorOnly" type="Node" parent="."]
+script = ExtResource("14_jnjav")
+
+[node name="EditorShaderElapsedTime" parent="EditorOnly" instance=ExtResource("15_u7n38")]
+
+[connection signal="connection_request" from="System/GraphEdit" to="System/GraphEdit" method="_on_connection_request"]
+[connection signal="disconnection_request" from="System/GraphEdit" to="System/GraphEdit" method="_on_disconnection_request"]
+[connection signal="mouse_entered" from="Game/ManaOrbHolder/ManaSkillPanel/BackpackIcon" to="Game/ManaOrbHolder/ManaSkillPanel/BackpackIcon" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Game/ManaOrbHolder/ManaSkillPanel/BackpackIcon" to="Game/ManaOrbHolder/ManaSkillPanel/BackpackIcon" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Game/Inventory" to="Game/Inventory" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Game/Inventory" to="Game/Inventory" method="_on_mouse_exited"]

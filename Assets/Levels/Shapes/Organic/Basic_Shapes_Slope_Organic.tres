@@ -1,0 +1,16 @@
+[gd_resource type="ArrayMesh" format=4 uid="uid://b330wd5l6hm8p"]
+
+[resource]
+resource_name = "Slope_Organic_Slope_Wall_002"
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 4, 2),
+"attribute_data": PackedByteArray("BgDMDAYA+P///8wM/v/4//9/zAz/f/j/BgD/f/7//3//f/9/////P/9//z8GAP8/BgD/v/7//7//f/+/BgAGAP//BgD/fwYA"),
+"format": 34896613399,
+"index_count": 60,
+"index_data": PackedByteArray("DgADAAUADgANAAMADAAFAAEADAAOAAUACwAIAAYACwAKAAgACgAHAAgACgAJAAcABAAJAAoABAACAAkAAAAKAAsAAAAEAAoABgAOAAwABgAIAA4ACAANAA4ACAAHAA0ABAAQAAIABAARABAAAAARAAQAAAAPABEA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 18,
+"vertex_data": PackedByteArray("/x/L/P//wPr//wAA//9V/v8fy/wAAMD6//8AAAAAVf7/H8v8/3/A+v//AAD/f1X+MnP/f///1v4yc/9/AADW/jJz/3//f9b+/z//vwAAi///P/+//3+L//8//7///4v/mLn/P///Vf6Yuf8/AABV/pi5/z//f1X+AAD/////cPsAAP//AABw+wAA////f3D7/iniIGUblC7+KeIgZRuULv4p4iBlG5QuXhj0MF4Y9DBeGPQwHBJzNRwSczUcEnM1ZRuULmUblC5lG5QuTDwqB0w8KgdMPCoH")
+}]
+blend_shape_mode = 0

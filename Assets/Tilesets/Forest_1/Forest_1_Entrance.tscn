@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=4 uid="uid://bkbwqynf5rba7"]
+
+[ext_resource type="Material" uid="uid://dbeqcoq4pdd0g" path="res://Assets/Tilesets/Forest_1/Forest_1_Mat_Cliff.tres" id="2_4bk8o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xf3c6"]
+resource_name = "Wall"
+cull_mode = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_rljqe"]
+resource_name = "Entrance_Slope_Wall_001"
+_surfaces = [{
+"aabb": AABB(-3, 0, -3, 4, 4, 4),
+"attribute_data": PackedByteArray("/38CgP9///+CjQKA/v8CgPn/AoD5//v//v9Pkv7/T5KCjU+S/v9Pksim//9Dnv///v////Hh+//cqM2w3KjNsEmi2rE7vmqfO75qn2K1EaF92LiVfdi4lQvTN5f+/4OV/v+DlS+1g5X//+qd///qndvW6Z3+/52u/v+drkTknK7Ipv//yKb//wKA+//+/////v9Pkv7/T5ICgAKA/v9Pkv7///8o7vv/3KjNsNyozbDcqM2wO75qnzu+ap87vmqffdi4lX3YuJV92LiV/v+Dlf7/g5XEs7+D///qnf//6p2y34yN/v+drv7/na4w8Qmh"),
+"format": 34896613399,
+"index_count": 108,
+"index_data": PackedByteArray("AAALAAEAAAAQAAsACQAAAAMAFgAAAAkAAAATABAAAAAWABMABAAIAAIABAAZAAgADQAEAAUAHwAEAA0ABAAcABkAHAAEAB8AIwAyACcAMgAsAC8ALAAjACEAMgAjACwADAA5AB0ADAAoADkADgAgAAoADgAqACAAIgA7ACkAOwA1ADgANQAiACYAOwAiADUAGAAlAAcAGAA0ACUAEQArAA8AEQAtACsAGwAzABcAGwA3ADMAFAAuABIAFAAwAC4AHgA2ABoAHgA6ADYABgAxABUABgAkADEA"),
+"material": SubResource("StandardMaterial3D_xf3c6"),
+"name": "Wall",
+"primitive": 3,
+"uv_scale": Vector4(2, 2, 0, 0),
+"vertex_count": 60,
+"vertex_data": PackedByteArray("/3//////ZcL//wAA//8mwv9/////fybC/3////9/JsL/f///AAAmwv//AAAAACbCTJJk2/9/OcZMkmTb/3/YRUySZNv/fybCTJJk2/9/C8L//wAAxN1D////AADE3TnC//8AAJQhWH///wAAlCEmwsuwZ57o2kP/y7BnnujaG+zLsGee6NoRw2ifLcFxyBvsaJ8twXHIlNhony3BcciWwraVkdRNrJTYtpWR1E2sOca2lZHUTazxwYGV+9ShUxhRgZX71KFT2EWBlfvUoVMmwuedLsT6Lc9u550uxPotGFHnnS7E+i0mwpuuxqL7Hlh/m67Govsez26brsai+x4mwgAAAADE3UP/AAAAAMTd/78AAAAA/3//vwAAAAD/f/+/AABk2/9/OcYAAGTb/3/YRQAAZNv/f/+/AABk2/9//78AAAAAlCFYfwAAAACUIf+/AABnnujaQ/8AAGee6Nob7AAAZ57o2v+/AAAtwXHIG+wAAC3BcciU2AAALcFxyP+/AACR1E2slNgAAJHUTaw5xgAAkdRNrP+/AAD71KFTGFEAAPvUoVPYRQAA+9ShU/+/AAAuxPotz24AAC7E+i0YUQAALsT6Lf+/AADGovseWH8AAMai+x7PbgAAxqL7Hv+/9qhXEwyphhQMqYYUDKmGFAyphhQMqYYUAAD/fwAA/38MqYYUFqkOFQAA/38FqSUU////fwyphhQAAP9/AAD/f7+oZBAAAP9/AAD/f+WodBIAAP9/AAD/fyCpkhUAAP9/AAD/fwyphhQAAP9/AAD/fwyphhT///9/AAD/fwyphhQAAP9//38AAP9/AAD/fwAAAAD/fwAA/3//fwAA/38AAP///3//fwAAAAD/fwAA/3//fwAAAAD/fwAA/3//fwAAAAD/fwAA/3//fwAAAAD/fwAA/3//fwAAAAD/fwAA/3//fwAA////fwAA/3//fwAA")
+}]
+blend_shape_mode = 0
+
+[node name="Entrance" type="MeshInstance3D"]
+mesh = SubResource("ArrayMesh_rljqe")
+surface_material_override/0 = ExtResource("2_4bk8o")

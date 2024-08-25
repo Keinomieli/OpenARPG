@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://d8ud3o6iwqqg"]
+
+[ext_resource type="ArrayMesh" uid="uid://cpah3vdwcm3pb" path="res://Shaders/PostProcessing/FullScreenTriangle.tres" id="1_mi8rw"]
+[ext_resource type="Shader" uid="uid://bnhtg53qcic4f" path="res://Shaders/PostProcessing/SimpleAmbient.tres" id="2_l4krd"]
+[ext_resource type="Shader" uid="uid://brcwe1bnf7uuc" path="res://Shaders/PostProcessing/DistanceFog.tres" id="4_pyn6v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2awj3"]
+render_priority = -128
+shader = ExtResource("2_l4krd")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_75w1w"]
+_surfaces = [{
+"aabb": AABB(-1, -1, 0, 4, 4, 1e-05),
+"format": 34359742465,
+"index_count": 3,
+"index_data": PackedByteArray(0, 0, 2, 0, 1, 0),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 3,
+"vertex_data": PackedByteArray(0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 64, 64, 0, 0, 0, 0, 0, 0, 64, 64, 0, 0, 128, 191, 0, 0, 0, 0)
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qajvo"]
+render_priority = 127
+shader = ExtResource("4_pyn6v")
+
+[node name="PostProcessing" type="Node"]
+
+[node name="SimpleAmbient" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0)
+top_level = true
+extra_cull_margin = 16384.0
+mesh = ExtResource("1_mi8rw")
+surface_material_override/0 = SubResource("ShaderMaterial_2awj3")
+
+[node name="DistanceFog" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0)
+top_level = true
+extra_cull_margin = 16384.0
+mesh = SubResource("ArrayMesh_75w1w")
+surface_material_override/0 = SubResource("ShaderMaterial_qajvo")

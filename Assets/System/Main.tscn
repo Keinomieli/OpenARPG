@@ -1,0 +1,45 @@
+[gd_scene load_steps=13 format=3 uid="uid://3u8a6guvy5fq"]
+
+[ext_resource type="Script" path="res://Scripts/System/Initializer.cs" id="1_2rwf7"]
+[ext_resource type="Environment" uid="uid://dr45i2pf3r4i5" path="res://Assets/Levels/WorldEnvironment.tres" id="1_o771c"]
+[ext_resource type="Script" path="res://Scripts/System/LevelManager.cs" id="2_ohxud"]
+[ext_resource type="Resource" uid="uid://dhbv0ubdh7uix" path="res://Assets/Levels/Dungeons/Dungeon_1.tres" id="3_1c3s8"]
+[ext_resource type="PackedScene" uid="uid://bntxtvwus3mje" path="res://Assets/System/SpectatorCamera.tscn" id="3_n2mop"]
+[ext_resource type="Script" path="res://Scripts/Global/DebugDraw2D.cs" id="4_ornqt"]
+[ext_resource type="Script" path="res://Scripts/Global/DebugDraw3D.cs" id="5_neukj"]
+[ext_resource type="PackedScene" uid="uid://y6hj5vqsm8hc" path="res://Assets/System/GUI.tscn" id="6_4jd1m"]
+[ext_resource type="Script" path="res://Scripts/System/Sequencer.cs" id="8_7owx8"]
+[ext_resource type="Resource" uid="uid://ds1xbwooupyp4" path="res://Assets/Levels/Dungeons/Forest_1.tres" id="9_8eklo"]
+[ext_resource type="PackedScene" uid="uid://b34dc13pw26up" path="res://Assets/Player/LocalPlayer_avatar.tscn" id="9_ag6vm"]
+[ext_resource type="PackedScene" uid="uid://d8ud3o6iwqqg" path="res://Assets/System/PostProcessing.tscn" id="10_lt42w"]
+
+[node name="Main" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_o771c")
+
+[node name="Initializer" type="Node" parent="."]
+script = ExtResource("1_2rwf7")
+loadLevel = "Forest_1"
+playerVisualModel = 0
+
+[node name="LevelManager" type="Node" parent="."]
+script = ExtResource("2_ohxud")
+includedLevels = [ExtResource("3_1c3s8"), ExtResource("9_8eklo")]
+
+[node name="SpectatorCamera" parent="." instance=ExtResource("3_n2mop")]
+
+[node name="DebugDraw2D" type="Node2D" parent="."]
+script = ExtResource("4_ornqt")
+
+[node name="DebugDraw3D" type="Node3D" parent="."]
+script = ExtResource("5_neukj")
+
+[node name="GUI" parent="." instance=ExtResource("6_4jd1m")]
+
+[node name="Sequencer" type="Node" parent="."]
+script = ExtResource("8_7owx8")
+
+[node name="LocalPlayer" parent="." instance=ExtResource("9_ag6vm")]
+
+[node name="PostProcessing" parent="." instance=ExtResource("10_lt42w")]

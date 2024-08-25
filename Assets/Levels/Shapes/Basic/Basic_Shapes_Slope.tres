@@ -1,0 +1,16 @@
+[gd_resource type="ArrayMesh" format=3 uid="uid://b14whev7ymhno"]
+
+[resource]
+resource_name = "Basic_Shapes_Slope_Wall"
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 4, 2),
+"attribute_data": PackedByteArray(255, 127, 2, 128, 255, 127, 255, 255, 255, 255, 2, 128, 255, 255, 255, 255),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 3, 0, 1, 0, 0, 0, 2, 0, 3, 0),
+"primitive": 3,
+"uv_scale": Vector4(2, 2, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 255, 255, 255, 255, 38, 194, 255, 255, 0, 0, 255, 255, 38, 194, 0, 0, 255, 255, 0, 0, 38, 194, 255, 255, 0, 0, 0, 0, 38, 194, 12, 169, 134, 20, 12, 169, 134, 20, 12, 169, 134, 20, 12, 169, 134, 20)
+}]
+blend_shape_mode = 0

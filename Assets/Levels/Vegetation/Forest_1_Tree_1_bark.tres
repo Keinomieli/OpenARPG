@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c026rcgsne28y"]
+
+[ext_resource type="Texture2D" uid="uid://cjmxgstod7g73" path="res://Assets/Levels/Vegetation/Forest_1_Tree_1_bark.png" id="1_tjek4"]
+
+[resource]
+albedo_color = Color(0.8, 0.8, 0.8, 1)
+albedo_texture = ExtResource("1_tjek4")
+metallic_specular = 0.0

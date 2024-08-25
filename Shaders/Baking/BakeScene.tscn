@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://wgnry1hbbr2p"]
+
+[ext_resource type="ArrayMesh" uid="uid://cpah3vdwcm3pb" path="res://Shaders/PostProcessing/FullScreenTriangle.tres" id="1_o3ded"]
+[ext_resource type="Shader" uid="uid://tp0vn6ygmgt8" path="res://Shaders/Baking/ViewNormals.tres" id="2_vg4nh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kb2ud"]
+render_priority = 0
+shader = ExtResource("2_vg4nh")
+
+[sub_resource type="TorusMesh" id="TorusMesh_vb7lf"]
+
+[node name="BakeScene" type="Node3D"]
+
+[node name="ViewNormals" type="MeshInstance3D" parent="."]
+top_level = true
+extra_cull_margin = 16384.0
+mesh = ExtResource("1_o3ded")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_kb2ud")
+
+[node name="Front" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -150)
+fov = 5.0
+size = 12.0
+
+[node name="Back" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 150)
+fov = 5.0
+size = 12.0
+
+[node name="Side" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 150, 0, 0)
+fov = 5.0
+size = 12.0
+
+[node name="Half" type="Camera3D" parent="."]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -100, 0, -100)
+current = true
+fov = 5.0
+size = 12.0
+
+[node name="Target_Object" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.699027, 0.604363, -0.382239, -0.715095, 0.590783, -0.373651, 0, 0.534529, 0.84515, 0, 0, 0)
+mesh = SubResource("TorusMesh_vb7lf")

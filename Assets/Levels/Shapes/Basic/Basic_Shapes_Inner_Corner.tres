@@ -1,0 +1,16 @@
+[gd_resource type="ArrayMesh" format=4 uid="uid://cvli2g44gaih3"]
+
+[resource]
+resource_name = "Basic_Shapes_Slope_Inner_Corner"
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 4, 2),
+"attribute_data": PackedByteArray("AAAAAP////8AAP//AAAAAP//AAD//wAA"),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAAEAAIAAwAFAAEA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("AAD/////JsL//wAA///jkv//AAD//ybCAAD//wAA45IAAP//AAAmwv////8AAOOSDKmGFP///38MqYYU////fwyphhT///9/")
+}]
+blend_shape_mode = 0
