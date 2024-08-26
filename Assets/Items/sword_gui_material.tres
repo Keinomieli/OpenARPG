@@ -2,11 +2,11 @@
 
 [ext_resource type="Shader" uid="uid://6n3ry67in0gw" path="res://Shaders/Gui/MagicalOutline.tres" id="1_yuo1g"]
 
-[sub_resource type="Gradient" id="Gradient_dmf6h"]
+[sub_resource type="Gradient" id="Gradient_p4bbq"]
 colors = PackedColorArray(0, 1, 0.333333, 1, 0, 0.333333, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_dpnuw"]
-gradient = SubResource("Gradient_dmf6h")
+gradient = SubResource("Gradient_p4bbq")
 width = 16
 
 [resource]
