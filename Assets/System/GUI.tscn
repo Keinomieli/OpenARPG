@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://y6hj5vqsm8hc"]
+[gd_scene load_steps=57 format=3 uid="uid://y6hj5vqsm8hc"]
 
 [ext_resource type="Script" path="res://Scripts/Player/MainUI.cs" id="1_gb0kq"]
 [ext_resource type="Texture2D" uid="uid://h6533k836yki" path="res://Assets/Gui/corner_skill_panel.png" id="6_dhsv1"]
@@ -12,7 +12,6 @@
 [ext_resource type="Script" path="res://Scripts/Gui/InventoryButton.cs" id="10_7xbbd"]
 [ext_resource type="PackedScene" uid="uid://crj8iq4r5ekx4" path="res://Assets/System/DevConsole.tscn" id="10_erq1l"]
 [ext_resource type="Texture2D" uid="uid://dxcswlmgifdab" path="res://Assets/Items/shield_1_2.png" id="10_uwvtc"]
-[ext_resource type="Material" uid="uid://bb1bp70bhoxe8" path="res://Assets/Items/sword_gui_material.tres" id="11_6v4gf"]
 [ext_resource type="Script" path="res://Scripts/Tools/ScreenshotTaker.cs" id="11_j6c2b"]
 [ext_resource type="Texture2D" uid="uid://bcpjronyffpbp" path="res://Assets/Items/sword_1_1.png" id="11_mtrbl"]
 [ext_resource type="Material" uid="uid://3557tj4bglba" path="res://Assets/Gui/IconHoverOver.tres" id="11_tisra"]
@@ -22,6 +21,14 @@
 [ext_resource type="PackedScene" uid="uid://dtvyqw8jy5t7k" path="res://Scripts/Tools/EditorShaderElapsedTime.tscn" id="15_u7n38"]
 [ext_resource type="Shader" uid="uid://6n3ry67in0gw" path="res://Shaders/Gui/MagicalOutline.tres" id="18_3oxig"]
 [ext_resource type="Texture2D" uid="uid://bqva8pbq4lsv1" path="res://Assets/Items/helmet_1_1.png" id="19_2rf65"]
+[ext_resource type="Texture2D" uid="uid://ow5d3lvet7bj" path="res://Assets/Items/ring_3.png" id="20_7b1sp"]
+[ext_resource type="Texture2D" uid="uid://d4g8661w624o0" path="res://Assets/Items/ring_2.png" id="21_yga86"]
+[ext_resource type="Texture2D" uid="uid://whcdn111tnxv" path="res://Assets/Items/ring_1.png" id="22_v2uhf"]
+[ext_resource type="Texture2D" uid="uid://cosv8gm8uxguj" path="res://Assets/Items/amulet_1.png" id="23_bsi08"]
+[ext_resource type="Texture2D" uid="uid://x6tx6yd7hnol" path="res://Assets/Items/amulet_2.png" id="24_spob3"]
+[ext_resource type="Texture2D" uid="uid://cnw85x2ycpsub" path="res://Assets/Items/belt_1.png" id="25_lql4d"]
+[ext_resource type="Texture2D" uid="uid://c48ixmht4bui5" path="res://Assets/Items/gloves_1.png" id="26_8srp4"]
+[ext_resource type="Texture2D" uid="uid://0fb84gbo13c1" path="res://Assets/Items/boots_1.png" id="27_6durb"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_turrm"]
 
@@ -33,6 +40,21 @@ base_font = SubResource("SystemFont_hbgp5")
 variation_embolden = 0.5
 spacing_glyph = 1
 
+[sub_resource type="Gradient" id="Gradient_p4bbq"]
+colors = PackedColorArray(0, 1, 0.333333, 1, 0, 0.333333, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dpnuw"]
+gradient = SubResource("Gradient_p4bbq")
+width = 16
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tpg3q"]
+shader = ExtResource("18_3oxig")
+shader_parameter/Voronoi_Scale = Vector2(1, 4)
+shader_parameter/Voronoi_Speed = Vector2(0.1, 0.6)
+shader_parameter/Voronoi_Angle = 5.0
+shader_parameter/Voronoi_Density = 20.0
+shader_parameter/MagicalGlowGradient = SubResource("GradientTexture1D_dpnuw")
+
 [sub_resource type="Gradient" id="Gradient_lt8ir"]
 colors = PackedColorArray(1, 0.5, 0, 1, 1, 1, 0, 1)
 
@@ -41,11 +63,101 @@ gradient = SubResource("Gradient_lt8ir")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jh452"]
 shader = ExtResource("18_3oxig")
-shader_parameter/Voronoi_Speed_A = Vector2(-0.067, 0.039)
-shader_parameter/Voronoi_Scale = 20.0
-shader_parameter/Voronoi_Angle = 10.0
-shader_parameter/Voronoi_Density = 3.0
+shader_parameter/Voronoi_Scale = Vector2(5, 5)
+shader_parameter/Voronoi_Speed = Vector2(-0.4, 0.6)
+shader_parameter/Voronoi_Angle = 5.0
+shader_parameter/Voronoi_Density = 5.0
 shader_parameter/MagicalGlowGradient = SubResource("GradientTexture1D_yxnl2")
+
+[sub_resource type="Gradient" id="Gradient_jbij1"]
+colors = PackedColorArray(0.607843, 0, 0, 1, 1, 0.55, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5xsr5"]
+gradient = SubResource("Gradient_jbij1")
+width = 16
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ved8"]
+shader = ExtResource("18_3oxig")
+shader_parameter/Voronoi_Scale = Vector2(1, 1)
+shader_parameter/Voronoi_Speed = Vector2(0, 0.6)
+shader_parameter/Voronoi_Angle = 5.0
+shader_parameter/Voronoi_Density = 10.0
+shader_parameter/MagicalGlowGradient = SubResource("GradientTexture1D_5xsr5")
+
+[sub_resource type="Gradient" id="Gradient_tljtc"]
+colors = PackedColorArray(1, 0.13, 0.652, 1, 0.57, 0, 0.418, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qjxeo"]
+gradient = SubResource("Gradient_tljtc")
+width = 16
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_82acy"]
+shader = ExtResource("18_3oxig")
+shader_parameter/Voronoi_Scale = Vector2(1, 1)
+shader_parameter/Voronoi_Speed = Vector2(0.6, 0)
+shader_parameter/Voronoi_Angle = 5.0
+shader_parameter/Voronoi_Density = 5.0
+shader_parameter/MagicalGlowGradient = SubResource("GradientTexture1D_qjxeo")
+
+[sub_resource type="Gradient" id="Gradient_yxmd2"]
+colors = PackedColorArray(0, 0.256667, 0.77, 1, 0, 0.966667, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uak6s"]
+gradient = SubResource("Gradient_yxmd2")
+width = 16
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uc3pv"]
+shader = ExtResource("18_3oxig")
+shader_parameter/Voronoi_Scale = Vector2(0.1, 0.1)
+shader_parameter/Voronoi_Speed = Vector2(0, 0.2)
+shader_parameter/Voronoi_Angle = 5.0
+shader_parameter/Voronoi_Density = 5.0
+shader_parameter/MagicalGlowGradient = SubResource("GradientTexture1D_uak6s")
+
+[sub_resource type="Gradient" id="Gradient_kqmya"]
+colors = PackedColorArray(0.35, 1, 0, 1, 0, 0.53, 0.0176666, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jpuxx"]
+gradient = SubResource("Gradient_kqmya")
+width = 16
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dheyq"]
+shader = ExtResource("18_3oxig")
+shader_parameter/Voronoi_Scale = Vector2(3, 3)
+shader_parameter/Voronoi_Speed = Vector2(-1, 1)
+shader_parameter/Voronoi_Angle = 5.0
+shader_parameter/Voronoi_Density = 5.0
+shader_parameter/MagicalGlowGradient = SubResource("GradientTexture1D_jpuxx")
+
+[sub_resource type="Gradient" id="Gradient_e5bcu"]
+colors = PackedColorArray(1, 0, 0.916667, 1, 0.233334, 0, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8ymxv"]
+gradient = SubResource("Gradient_e5bcu")
+width = 16
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1b17f"]
+shader = ExtResource("18_3oxig")
+shader_parameter/Voronoi_Scale = Vector2(1, 1)
+shader_parameter/Voronoi_Speed = Vector2(-0.2, -0.6)
+shader_parameter/Voronoi_Angle = 5.0
+shader_parameter/Voronoi_Density = 5.0
+shader_parameter/MagicalGlowGradient = SubResource("GradientTexture1D_8ymxv")
+
+[sub_resource type="Gradient" id="Gradient_0kqyy"]
+colors = PackedColorArray(0.2, 0.2, 0.2, 0.25098, 1, 1, 1, 0.768627)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fcylc"]
+gradient = SubResource("Gradient_0kqyy")
+width = 16
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bjyjk"]
+shader = ExtResource("18_3oxig")
+shader_parameter/Voronoi_Scale = Vector2(1, 1)
+shader_parameter/Voronoi_Speed = Vector2(0.2, 0.4)
+shader_parameter/Voronoi_Angle = 2.0
+shader_parameter/Voronoi_Density = 2.0
+shader_parameter/MagicalGlowGradient = SubResource("GradientTexture1D_fcylc")
 
 [node name="GUI" type="Node"]
 script = ExtResource("1_gb0kq")
@@ -277,10 +389,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -175.9
-offset_top = 60.5
-offset_right = -47.9
-offset_bottom = 188.5
+offset_left = -242.0
+offset_top = 62.5
+offset_right = -178.0
+offset_bottom = 190.5
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("10_uwvtc")
@@ -292,26 +404,26 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -337.5
+offset_left = -339.0
 offset_top = 76.5
-offset_right = -209.5
+offset_right = -275.0
 offset_bottom = 204.5
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("15_pl8k4")
 
 [node name="Sword" type="TextureRect" parent="Game/Inventory"]
-material = ExtResource("11_6v4gf")
+material = SubResource("ShaderMaterial_tpg3q")
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -257.3
-offset_top = 65.81
-offset_right = -129.3
-offset_bottom = 193.81
+offset_left = -274.5
+offset_top = 65.0
+offset_right = -242.5
+offset_bottom = 193.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("11_mtrbl")
@@ -324,13 +436,139 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -338.5
-offset_top = -5.0
-offset_right = -210.5
-offset_bottom = 123.0
+offset_left = -339.0
+offset_top = 27.5
+offset_right = -275.0
+offset_bottom = 91.5
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("19_2rf65")
+
+[node name="Ring_3" type="TextureRect" parent="Game/Inventory"]
+material = SubResource("ShaderMaterial_2ved8")
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -144.5
+offset_top = 126.5
+offset_right = -112.5
+offset_bottom = 158.5
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("20_7b1sp")
+
+[node name="Ring_2" type="TextureRect" parent="Game/Inventory"]
+material = SubResource("ShaderMaterial_82acy")
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -144.5
+offset_top = 94.5
+offset_right = -112.5
+offset_bottom = 126.5
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("21_yga86")
+
+[node name="Ring_1" type="TextureRect" parent="Game/Inventory"]
+material = SubResource("ShaderMaterial_uc3pv")
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -144.5
+offset_top = 62.0
+offset_right = -112.5
+offset_bottom = 94.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("22_v2uhf")
+
+[node name="Amulet_1" type="TextureRect" parent="Game/Inventory"]
+material = SubResource("ShaderMaterial_dheyq")
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -176.5
+offset_top = 29.5
+offset_right = -144.5
+offset_bottom = 61.5
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("23_bsi08")
+
+[node name="Amulet_2" type="TextureRect" parent="Game/Inventory"]
+material = SubResource("ShaderMaterial_1b17f")
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -144.5
+offset_top = 29.0
+offset_right = -112.5
+offset_bottom = 61.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("24_spob3")
+
+[node name="Belt_1" type="TextureRect" parent="Game/Inventory"]
+material = SubResource("ShaderMaterial_bjyjk")
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = 191.0
+offset_right = -111.0
+offset_bottom = 223.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("25_lql4d")
+
+[node name="Gloves_1" type="TextureRect" parent="Game/Inventory"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -112.5
+offset_top = 93.5
+offset_right = -49.5
+offset_bottom = 157.5
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("26_8srp4")
+
+[node name="Boots_1" type="TextureRect" parent="Game/Inventory"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -111.5
+offset_top = 158.5
+offset_right = -47.5
+offset_bottom = 222.5
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("27_6durb")
 
 [node name="Post-Process" type="CanvasLayer" parent="."]
 visible = false
