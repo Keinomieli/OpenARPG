@@ -22,8 +22,6 @@ config/icon="res://Assets/App/openarpg-logo.png"
 
 [display]
 
-window/size/viewport_width=2560
-window/size/viewport_height=1440
 window/size/mode=4
 window/size/initial_position_type=2
 mouse_cursor/custom_image="res://Assets/App/cursor.png"

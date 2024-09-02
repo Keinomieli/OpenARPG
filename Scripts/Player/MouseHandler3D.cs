@@ -63,7 +63,7 @@ namespace OpenARPG.Player
             //checks against colliders in the world
             Godot.Collections.Dictionary result = GetWorld3D().DirectSpaceState.IntersectRay(rayQuery);
 
-            if (/*result != null &&*/ result.Count > 0)
+            if (result.Count > 0)
             {
                 MouseWorldPosition = (Vector3)result["position"];
             }

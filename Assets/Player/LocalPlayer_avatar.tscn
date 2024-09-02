@@ -37,17 +37,16 @@ followCamera = NodePath("CameraPivot/MainCamera")
 visualModel = NodePath("VisualModel")
 visionSource = NodePath("VisualModel/PlayerVisionSource")
 cameraPivot = NodePath("CameraPivot")
-positionSmoothingSpeed = 20.0
-cameraSmoothingSpeed = 12.0
+cameraOffset = Vector3(0, 1.5, 0)
+cameraVerticalClamp = Vector2(-80, 30)
 
 [node name="CameraPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939692, 0, -0.939692, 0.34202, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
 
 [node name="MainCamera" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 45)
-projection = 2
+transform = Transform3D(1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, 0, 0, 2)
 current = true
-fov = 50.0
+fov = 80.0
 size = 0.65
 near = 1.0
 far = 80.0
@@ -64,17 +63,16 @@ mesh = SubResource("QuadMesh_pvgal")
 [node name="PlayerVisionSource" type="Node3D" parent="VisualModel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52127, 0)
 
-[node name="Area3D" type="Area3D" parent="VisualModel"]
+[node name="TriggerArea" type="Area3D" parent="VisualModel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_layer = 2
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="VisualModel/Area3D"]
+[node name="TriggerShape" type="CollisionShape3D" parent="VisualModel/TriggerArea"]
 shape = SubResource("CapsuleShape3D_t3x6y")
 
 [node name="MouseHandler3D" type="Node3D" parent="." node_paths=PackedStringArray("raycastCamera")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.4422, 7.62939e-06, 57.19)
 top_level = true
 script = ExtResource("14_7ogv4")
 raycastCamera = NodePath("../CameraPivot/MainCamera")

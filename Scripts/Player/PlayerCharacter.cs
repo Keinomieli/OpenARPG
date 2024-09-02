@@ -17,13 +17,18 @@ namespace OpenARPG.Player
 		[Export] private Node3D visionSource;
 		[Export] private Node3D cameraPivot;
 		[Export] private Vector3 cameraOffset;
+		[Export] private Vector2 cameraVerticalClamp = new(-80,80);
+		[Export] private Vector2 cameraSensitivity = new(.2f,.2f);
 		[Export(PropertyHint.Range, "1,25,0.1,or_greater,or_less")] 
-		private float positionSmoothingSpeed = 16.0f;
+		private float positionSmoothingSpeed = 20.0f;
 		[Export(PropertyHint.Range, "1,25,0.1,or_greater,or_less")] 
-		private float cameraSmoothingSpeed = 16.0f;
+		private float rotationSmoothingSpeed = 16.0f;
+		[Export(PropertyHint.Range, "1,25,0.1,or_greater,or_less")] 
+		private float cameraPositionSmoothingSpeed = 12.0f;
 
 		Vector3 targetPosition;
 		Vector2 moveInput;
+		Vector2 cameraSpherical;
 
 		public override void _EnterTree()
 		{
@@ -43,54 +48,56 @@ namespace OpenARPG.Player
 			};
 		}
 
-		private void _Tick(float delta)
+        public override void _Input(InputEvent @event)
+        {
+			if (@event is InputEventMouseMotion motion)
+			{
+				cameraSpherical -= motion.Relative * cameraSensitivity;
+				cameraSpherical.Y = Mathf.Clamp(cameraSpherical.Y, cameraVerticalClamp.X, cameraVerticalClamp.Y);
+				
+				if (cameraSpherical.X < -180f)
+					cameraSpherical.X += 360f;
+				else if (cameraSpherical.X > 180f)
+					cameraSpherical.X -= 360f;
+			}
+        }
+
+        private void _Tick(float delta)
 		{
-			visualModel.GlobalPosition = AxMath.expDecay(visualModel.GlobalPosition, targetPosition, positionSmoothingSpeed, delta);
+			visualModel.GlobalPosition = AxMath.ExpDecay(visualModel.GlobalPosition, targetPosition, positionSmoothingSpeed, delta);
 
 			PlayerWorldPosition = visualModel.GlobalPosition;
-			cameraPivot.GlobalPosition = AxMath.expDecay(cameraPivot.GlobalPosition, PlayerWorldPosition + cameraOffset, cameraSmoothingSpeed, delta);
+			cameraPivot.GlobalPosition = AxMath.ExpDecay(cameraPivot.GlobalPosition, PlayerWorldPosition + cameraOffset, cameraPositionSmoothingSpeed, delta);
+
+			Vector3 targetRotation = new(Mathf.DegToRad(cameraSpherical.Y), Mathf.DegToRad(cameraSpherical.X), 0);
+			cameraPivot.Rotation = targetRotation;
+			visualModel.Rotation = new Vector3(0f, cameraPivot.Rotation.Y, 0f);
 
 			RenderingServer.GlobalShaderParameterSet("PlayerVisionSource", visionSource.GlobalPosition);
-
-			ProcessRotation();
 		}
 
 		private void _PhysicsTick(float delta)
 		{
 			//don't process player logic during cutscenes or when using spectator camera
 			if (followCamera.Current)
-				moveInput = Input.GetVector("Move_Left", "Move_Right", "Move_Down", "Move_Up"); 
+				moveInput = Input.GetVector("Move_Left", "Move_Right", "Move_Down", "Move_Up");
+			else
+				moveInput = Vector2.Zero;
 
 			ProcessTranslation(delta);
 		}
 
 		private void ProcessTranslation(float delta)
 		{
-			//Godot vectors have safe-normalize, they output a zero vector if length is zero
-			//if (moveInput == Vector2.Zero)
-				//return;
-
-			//make the movement vector match the camera so up and right means up and right in screen
-			Vector3 cameraWorldUp = followCamera.GlobalBasis.Y;
+			Vector3 cameraWorldForward = -followCamera.GlobalBasis.Z;
 			Vector3 cameraWorldRight = followCamera.GlobalBasis.X;
-			cameraWorldUp.Y = 0;
-			cameraWorldUp = cameraWorldUp.Normalized();
+			cameraWorldForward.Y = 0;
+			cameraWorldForward = cameraWorldForward.Normalized();
 			cameraWorldRight.Y = 0;
 			cameraWorldRight = cameraWorldRight.Normalized();
 
-			Vector3 moveVector = (moveInput.Y * cameraWorldUp + moveInput.X * cameraWorldRight).Normalized();
+			Vector3 moveVector = (moveInput.Y * cameraWorldForward + moveInput.X * cameraWorldRight).Normalized();
 			targetPosition += moveVector * moveSpeed * (float)delta;
-		}
-
-		private void ProcessRotation() 
-		{
-			if (!MouseHandler3D.MouseWorldPosition.HasValue)
-				return;
-			
-			Vector3 lookAtPosition = MouseHandler3D.MouseWorldPosition.Value;
-			lookAtPosition.Y = visualModel.GlobalPosition.Y;
-			
-			visualModel.LookAt(lookAtPosition, Vector3.Up);
 		}
 	}
 }
