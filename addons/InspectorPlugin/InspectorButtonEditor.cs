@@ -2,12 +2,10 @@
 using System;
 using Godot;
 
-namespace OpenARPG.Plugins
+namespace Keinomieli
 {
     public partial class InspectorButtonEditor : Button
     {
-        private bool _updating = false;
-
         public InspectorButtonEditor()
         {
         }

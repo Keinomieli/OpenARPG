@@ -1,16 +1,16 @@
 #if TOOLS
 using Godot;
 
-namespace OpenARPG.Plugins
+namespace Keinomieli
 {
     [Tool]
-    public partial class OpenARPG_InspectorPlugin : EditorPlugin
+    public partial class InspectorButtonEditorPlugin : EditorPlugin
     {
-        private InspectorPlugin _plugin;
+        private InspectorButtonPlugin _plugin;
 
         public override void _EnterTree()
         {
-            _plugin = new InspectorPlugin();
+            _plugin = new InspectorButtonPlugin();
             AddInspectorPlugin(_plugin);
         }
 
