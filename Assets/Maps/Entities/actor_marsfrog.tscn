@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnl1sf61oq4n4"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_kptyi"]
+radius = 0.2
+
+[node name="actor_marsfrog" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_kptyi")

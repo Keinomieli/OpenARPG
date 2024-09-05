@@ -92,7 +92,7 @@ texture_filter = 2
 texture_repeat = 1
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_hr8wg"]
-size = Vector2(2440, 1155)
+size = Vector2(2440, 918)
 title = "Panning Voronoi Noise"
 attached_nodes = PackedInt32Array(17, 54, 23, 24, 16, 22, 19, 20, 21, 60, 31)
 
@@ -208,7 +208,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-1043.41, -300.91)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(660, -140)

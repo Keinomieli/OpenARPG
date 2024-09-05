@@ -2,7 +2,7 @@ float rand_1D(float n) {
 	return fract(sin(n) * 58.5453123);
 }
 
-float rand_2D(vec2 n) { 
+float rand_2D(vec2 n) {
 	return fract(sin(dot(n, vec2(12.9898, 4.1414))) * 58.5453);
 }
 
@@ -51,6 +51,6 @@ vec2 voronoi_noise(vec2 xy, float AngleOffset, float CellDensity)
             }
         }
     }
-	
+
 	return result;
 }

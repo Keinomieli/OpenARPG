@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://deuso3honlay7"]
+
+[ext_resource type="Script" path="res://Scripts/MonsterZombie.cs" id="1_f86jw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_i3bom"]
+size = Vector3(0.5, 2, 0.5)
+
+[node name="monster_zombie" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_i3bom")
+script = ExtResource("1_f86jw")
