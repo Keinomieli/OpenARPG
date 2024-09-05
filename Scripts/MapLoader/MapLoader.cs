@@ -412,11 +412,30 @@ namespace OpenARPG.MapLoader
 										GD.PrintErr($"Could not load resource \"{resourcePath}\"");
 										return;
 									}
+
 									PackedScene entityScene = (PackedScene)resource;
 									Node entity = entityScene.Instantiate();
 									layerNode.AddChild(entity);
 									entity.Owner = layerNode.Owner;
 									entity.Name = classname;
+
+									if (entity is Node3D node3D)
+									{
+										if (trenchEntity.properties.TryGetValue("origin", out string origin))
+										{
+											string[] parts = origin.Split(' ');
+											Vector3 originValue = new(float.Parse(parts[0]), float.Parse(parts[1]), float.Parse(parts[2]));
+											node3D.Position = ConvertAxisAndScale(originValue);
+										}
+
+										if (trenchEntity.properties.TryGetValue("angle", out string angle))
+										{
+											node3D.Rotation = new(0f, Mathf.DegToRad(float.Parse(angle)), 0f);
+										}
+									}
+
+									if (entity is MapEntity mapEntity)
+										createdEntities.Add((mapEntity, trenchEntity));
 								break;
 
 							case "worldspawn":

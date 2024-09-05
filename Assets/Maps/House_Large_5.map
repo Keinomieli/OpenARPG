@@ -2404,6 +2404,13 @@
 }
 // entity 5
 {
+"classname" "actor_marsfrog"
+"origin" "-528 176 0"
+"angle" "60"
+"hitpoints" "155"
+}
+// entity 6
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "Room 0"
@@ -2680,7 +2687,7 @@
 ( -768 -608 480 ) ( -768 -576 480 ) ( -768 -576 0 ) STONE_01 [ 0 1 0 -16 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 6
+// entity 7
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2717,7 +2724,7 @@
 ( 368 -1216 848 ) ( 368 -1152 848 ) ( 368 -1152 480 ) STONE_01 [ 0 1 0 0 ] [ 0 0 -1 -32 ] 0 1 1
 }
 }
-// entity 7
+// entity 8
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2754,7 +2761,7 @@
 ( 0 -192 368 ) ( 0 -128 368 ) ( 0 -128 0 ) STONE_01 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 8
+// entity 9
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2791,7 +2798,7 @@
 ( -384 784 848 ) ( -384 848 848 ) ( -384 848 480 ) STONE_01 [ 0 1 0 48 ] [ 0 0 -1 -32 ] 0 1 1
 }
 }
-// entity 9
+// entity 10
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"

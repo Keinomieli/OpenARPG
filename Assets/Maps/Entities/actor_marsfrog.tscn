@@ -1,10 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dnl1sf61oq4n4"]
+[gd_scene load_steps=3 format=3 uid="uid://dnl1sf61oq4n4"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_kptyi"]
-radius = 0.2
+[ext_resource type="Script" path="res://Scripts/MapLoader/PointTypes/MarsFrog.cs" id="1_2wwxf"]
+[ext_resource type="PackedScene" uid="uid://c0wwemdch8ut4" path="res://Assets/Maps/Entities/mars_frog.glb" id="1_kbtmx"]
 
 [node name="actor_marsfrog" type="Node3D"]
+script = ExtResource("1_2wwxf")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_kptyi")
+[node name="mars_frog" parent="." instance=ExtResource("1_kbtmx")]
