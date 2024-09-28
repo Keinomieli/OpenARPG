@@ -5,12 +5,12 @@ namespace OpenARPG.Player
 {
 	public partial class MainUI : Node
 	{
-		public static Action UpdateMouseState {get; private set;} = () => { Logger.Error("MainUI not initialized"); };
-		public static MouseMode currentMouseMode {get; private set;} = MouseMode.Gui;
+		//public static Action UpdateMouseState {get; private set;} = () => { Logger.Error("MainUI not initialized"); };
+		//public static MouseMode currentMouseMode {get; private set;} = MouseMode.Gui;
 
-		private static Vector2 savedGuiPos;
+		//private static Vector2 savedGuiPos;
 	
-		private void SetMode(MouseMode newMode)
+		/*private void SetMode(MouseMode newMode)
 		{
 			if (currentMouseMode == newMode)
 				return;
@@ -27,13 +27,13 @@ namespace OpenARPG.Player
 			}
 
 			currentMouseMode = newMode;
-		}
+		}*/
 
-		public enum MouseMode
+		/*public enum MouseMode
 		{
 			Gui,
 			Character,
-		}
+		}*/
 
         public override void _Input(InputEvent @event)
 		{
@@ -43,7 +43,7 @@ namespace OpenARPG.Player
 			}
 		}
 
-        public override void _EnterTree()
+        /*public override void _EnterTree()
 		{
 			UpdateMouseState = () => 
 			{
@@ -56,6 +56,6 @@ namespace OpenARPG.Player
 					SetMode(MouseMode.Character);
 				}
 			};
-		}
+		}*/
 	}
 }

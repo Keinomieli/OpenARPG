@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnl1sf61oq4n4"]
-
-[ext_resource type="Script" path="res://Scripts/MapLoader/PointTypes/MarsFrog.cs" id="1_2wwxf"]
-[ext_resource type="PackedScene" uid="uid://c0wwemdch8ut4" path="res://Assets/Maps/Entities/mars_frog.glb" id="1_kbtmx"]
-
-[node name="actor_marsfrog" type="Node3D"]
-script = ExtResource("1_2wwxf")
-
-[node name="mars_frog" parent="." instance=ExtResource("1_kbtmx")]

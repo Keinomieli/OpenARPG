@@ -1,10 +1,16 @@
 using Godot;
 using System;
 
-namespace OpenARPG
+namespace OpenARPG.Player
 {
-	public partial class SimplePlayer : Node
+	public partial class PlayerCharacter_ThirdPerson : Node
 	{
+		public static Vector3 PlayerWorldPosition {get; private set;}
+		public static Func<Camera3D> GetFollowCamera {get; private set;} = () => { Logger.Error("PlayerCharacter not initialized"); return null; };
+		public static Action<float> Tick {get; private set;} = (_) => { Logger.Error("PlayerCharacter not initialized"); };
+		public static Action<float> PhysicsTick {get; private set;} = (_) => { Logger.Error("PlayerCharacter not initialized"); };
+		public static Action<Vector3> TeleportTo {get; private set;} = (_) => { Logger.Error("PlayerCharacter not initialized"); };
+
 		[Export] private float moveSpeed = 4.0f;
 		[Export] private Camera3D followCamera;
 		[Export] private Node3D visualModel;
@@ -24,13 +30,23 @@ namespace OpenARPG
 		Vector2 moveInput;
 		Vector2 cameraSpherical;
 
-        public override void _Ready()
-        {
-            Input.MouseMode = Input.MouseModeEnum.Captured;
+		public override void _EnterTree()
+		{
+			GetFollowCamera = () => followCamera;
+			Tick = _Tick;
+			PhysicsTick = _PhysicsTick;
 
-			targetPosition = visualModel.GlobalPosition;
-			cameraSpherical.X = cameraPivot.Rotation.Y;
-        }
+			TeleportTo = (teleportPos) => 
+			{ 
+				targetPosition = teleportPos;
+				visualModel.GlobalPosition = teleportPos;
+				PlayerWorldPosition = teleportPos;
+				cameraPivot.GlobalPosition = teleportPos + cameraOffset;
+				RenderingServer.GlobalShaderParameterSet("PlayerVisionSource", teleportPos);
+
+				Logger.Log($"Player teleported to {teleportPos}");
+			};
+		}
 
         public override void _Input(InputEvent @event)
         {
@@ -46,19 +62,29 @@ namespace OpenARPG
 			}
         }
 
-        public override void _Process(double delta)
+        private void _Tick(float delta)
 		{
-			moveInput = Input.GetVector("Move_Left", "Move_Right", "Move_Down", "Move_Up");
-			ProcessTranslation((float)delta);
+			visualModel.GlobalPosition = AxMath.ExpDecay(visualModel.GlobalPosition, targetPosition, positionSmoothingSpeed, delta);
 
-			visualModel.GlobalPosition = AxMath.ExpDecay(visualModel.GlobalPosition, targetPosition, positionSmoothingSpeed, (float)delta);
-			cameraPivot.GlobalPosition = AxMath.ExpDecay(cameraPivot.GlobalPosition, visualModel.GlobalPosition + cameraOffset, cameraPositionSmoothingSpeed, (float)delta);
+			PlayerWorldPosition = visualModel.GlobalPosition;
+			cameraPivot.GlobalPosition = AxMath.ExpDecay(cameraPivot.GlobalPosition, PlayerWorldPosition + cameraOffset, cameraPositionSmoothingSpeed, delta);
 
 			Vector3 targetRotation = new(Mathf.DegToRad(cameraSpherical.Y), Mathf.DegToRad(cameraSpherical.X), 0);
 			cameraPivot.Rotation = targetRotation;
 			visualModel.Rotation = new Vector3(0f, cameraPivot.Rotation.Y, 0f);
 
 			RenderingServer.GlobalShaderParameterSet("PlayerVisionSource", visionSource.GlobalPosition);
+		}
+
+		private void _PhysicsTick(float delta)
+		{
+			//don't process player logic during cutscenes or when using spectator camera
+			if (followCamera.Current)
+				moveInput = Input.GetVector("Move_Left", "Move_Right", "Move_Down", "Move_Up");
+			else
+				moveInput = Vector2.Zero;
+
+			ProcessTranslation(delta);
 		}
 
 		private void ProcessTranslation(float delta)

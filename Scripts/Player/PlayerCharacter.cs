@@ -17,8 +17,6 @@ namespace OpenARPG.Player
 		[Export] private Node3D visionSource;
 		[Export] private Node3D cameraPivot;
 		[Export] private Vector3 cameraOffset;
-		[Export] private Vector2 cameraVerticalClamp = new(-80,80);
-		[Export] private Vector2 cameraSensitivity = new(.2f,.2f);
 		[Export(PropertyHint.Range, "1,25,0.1,or_greater,or_less")] 
 		private float positionSmoothingSpeed = 20.0f;
 		[Export(PropertyHint.Range, "1,25,0.1,or_greater,or_less")] 
@@ -28,7 +26,6 @@ namespace OpenARPG.Player
 
 		Vector3 targetPosition;
 		Vector2 moveInput;
-		Vector2 cameraSpherical;
 
 		public override void _EnterTree()
 		{
@@ -48,20 +45,6 @@ namespace OpenARPG.Player
 			};
 		}
 
-        public override void _Input(InputEvent @event)
-        {
-			if (@event is InputEventMouseMotion motion)
-			{
-				cameraSpherical -= motion.Relative * cameraSensitivity;
-				cameraSpherical.Y = Mathf.Clamp(cameraSpherical.Y, cameraVerticalClamp.X, cameraVerticalClamp.Y);
-				
-				if (cameraSpherical.X < -180f)
-					cameraSpherical.X += 360f;
-				else if (cameraSpherical.X > 180f)
-					cameraSpherical.X -= 360f;
-			}
-        }
-
         private void _Tick(float delta)
 		{
 			visualModel.GlobalPosition = AxMath.ExpDecay(visualModel.GlobalPosition, targetPosition, positionSmoothingSpeed, delta);
@@ -69,11 +52,20 @@ namespace OpenARPG.Player
 			PlayerWorldPosition = visualModel.GlobalPosition;
 			cameraPivot.GlobalPosition = AxMath.ExpDecay(cameraPivot.GlobalPosition, PlayerWorldPosition + cameraOffset, cameraPositionSmoothingSpeed, delta);
 
-			Vector3 targetRotation = new(Mathf.DegToRad(cameraSpherical.Y), Mathf.DegToRad(cameraSpherical.X), 0);
-			cameraPivot.Rotation = targetRotation;
-			visualModel.Rotation = new Vector3(0f, cameraPivot.Rotation.Y, 0f);
-
 			RenderingServer.GlobalShaderParameterSet("PlayerVisionSource", visionSource.GlobalPosition);
+
+			ProcessRotation();
+		}
+
+		private void ProcessRotation() 
+		{
+			if (!MouseHandler3D.MouseWorldPosition.HasValue)
+				return;
+			
+			Vector3 lookAtPosition = MouseHandler3D.MouseWorldPosition.Value;
+			lookAtPosition.Y = visualModel.GlobalPosition.Y;
+			
+			visualModel.LookAt(lookAtPosition, Vector3.Up);
 		}
 
 		private void _PhysicsTick(float delta)
@@ -89,14 +81,14 @@ namespace OpenARPG.Player
 
 		private void ProcessTranslation(float delta)
 		{
-			Vector3 cameraWorldForward = -followCamera.GlobalBasis.Z;
+			Vector3 cameraWorldUp = followCamera.GlobalBasis.Y;
 			Vector3 cameraWorldRight = followCamera.GlobalBasis.X;
-			cameraWorldForward.Y = 0;
-			cameraWorldForward = cameraWorldForward.Normalized();
+			cameraWorldUp.Y = 0;
+			cameraWorldUp = cameraWorldUp.Normalized();
 			cameraWorldRight.Y = 0;
 			cameraWorldRight = cameraWorldRight.Normalized();
 
-			Vector3 moveVector = (moveInput.Y * cameraWorldForward + moveInput.X * cameraWorldRight).Normalized();
+			Vector3 moveVector = (moveInput.Y * cameraWorldUp + moveInput.X * cameraWorldRight).Normalized();
 			targetPosition += moveVector * moveSpeed * (float)delta;
 		}
 	}

@@ -92,9 +92,11 @@ namespace OpenARPG.System
 
                 RenderingServer.GlobalShaderParameterSet("ElapsedTime", elapsedTime);
 
-                MainUI.UpdateMouseState();
+                //MainUI.UpdateMouseState();
                 //if (MainUI.currentMouseMode == MainUI.MouseMode.Gui)
                     //MouseHandler3D.UpdateMouseWorldPosition();
+
+                MouseHandler3D.UpdateMouseWorldPosition();
                 PlayerCharacter.Tick(delta);
             }
 
